@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Site visit — Explorers Acquisitions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../css/app.css">
+<style>
+body{font-size:15px}
+.m{min-height:100vh;display:flex;flex-direction:column}
+.m header{background:var(--pine);color:#fff;padding:calc(14px + env(safe-area-inset-top)) 18px 14px;display:flex;flex-direction:column;gap:10px}
+.m header a{color:var(--gum);text-decoration:none;font-weight:600;font-size:14px;display:flex;align-items:center;gap:4px}
+.m main{flex:1;padding:16px;display:flex;flex-direction:column;gap:14px}
+.m .stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.m .stats .card{padding:12px}
+.m .stats .l{font-size:10.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3)}
+.m .stats .v{font-size:22px;font-weight:600}
+.shoot{display:flex;align-items:center;justify-content:center;gap:10px;padding:16px;border-radius:12px;border:0;background:var(--pine);color:#fff;font-size:16px;font-weight:600;cursor:pointer;min-height:56px;width:100%}
+.tags{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px;margin-top:-4px}
+.tags button{flex:none;padding:8px 14px;border-radius:999px;border:1px solid var(--rule-2);background:var(--paper);color:var(--ink);font-size:13px;font-weight:500;cursor:pointer;min-height:40px}
+.tags button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.ph{aspect-ratio:1;border-radius:8px;background:var(--sage);display:flex;align-items:flex-end;padding:6px;font-size:10px;font-weight:600;background-size:cover;background-position:center}
+.ph span{background:var(--ink);color:var(--paper);border-radius:4px;padding:2px 6px}
+.note{background:var(--oat);border-radius:8px;padding:10px 12px;font-size:13.5px;margin-bottom:8px}
+.note .t{font-size:11px;color:var(--ink-3)}
+.m nav.bottom{display:flex;border-top:1px solid var(--rule);background:var(--paper);padding:0 8px calc(8px + env(safe-area-inset-bottom))}
+.m nav.bottom a{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;font-size:11px;font-weight:600;color:var(--ink-3);text-decoration:none;padding:8px 0}
+.m nav.bottom a.on{color:var(--pine-ink)}
+.sites a{display:block;padding:14px;border-radius:10px;background:var(--paper);border:1px solid var(--rule);text-decoration:none;color:var(--ink);margin-bottom:8px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="../src/pages/mobile.js"></script>
+</body>
+</html>

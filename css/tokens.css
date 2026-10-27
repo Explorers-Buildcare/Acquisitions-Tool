@@ -1,0 +1,23 @@
+/* Explorers Acquisitions — design tokens (lifted from the Claude Design mockups) */
+:root{
+  /* Brand */
+  --pine:#00643B; --pine-2:#0B4C31; --pine-ink:#064A2C; --myrtle:#008E4D;
+  --gum:#DBE7BF; --gum-2:#CCDEA0; --moss:#B3CF8C; --sage:#E7EED3; --sage-2:#D6E1B6;
+  --brush:#D9642C; --brush-ink:#8F3A0E; --brush-l:#FBE3CF;
+  --red:#8B2E1F; --red-ink:#6F2316; --red-l:#F7DED7;
+
+  /* Ground */
+  --bg:#F6F4EC; --paper:#FBF8EF; --oat:#F3EEDC; --cream:#FAF4E3; --white:#fff;
+  --rule:#E4DECB; --rule-2:#D3CBB2; --rule-3:#B8B4A5;
+
+  /* Ink */
+  --ink:#2B241E; --ink-2:#5B5246; --ink-3:#6B6254;
+
+  /* Type */
+  --font:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;
+  --mono:'DM Mono',ui-monospace,Consolas,Menlo,monospace;
+
+  /* Shape */
+  --r-s:6px; --r:8px; --r-l:12px;
+  --shadow:0 1px 2px rgba(43,36,30,.06);
+}

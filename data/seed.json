@@ -1,0 +1,1479 @@
+{
+ "generated_at": "2026-10-27T12:39:58.795Z",
+ "projects": [
+  {
+   "id": "proj0000-0001-0000-0000-000000000000",
+   "type": "project",
+   "name": "Explorers Craigieburn",
+   "code": "EXP-CRB",
+   "active": true
+  },
+  {
+   "id": "proj0000-0002-0000-0000-000000000000",
+   "type": "project",
+   "name": "Explorers Kalkallo",
+   "code": "EXP-KAL",
+   "active": true
+  },
+  {
+   "id": "proj0000-0003-0000-0000-000000000000",
+   "type": "project",
+   "name": "Explorers Tarneit West",
+   "code": "EXP-TRW",
+   "active": true
+  },
+  {
+   "id": "00000000-0000-0000-0000-0000000000bc",
+   "type": "benchmark",
+   "name": "Victoria (Benchmark)",
+   "code": "BENCH-VIC",
+   "active": false
+  },
+  {
+   "id": "00000000-0000-0000-0000-0000000000ba",
+   "type": "benchmark",
+   "name": "Australia (Benchmark)",
+   "code": "BENCH-AUS",
+   "active": false
+  },
+  {
+   "id": "feas0000-0004-0000-0000-000000000000",
+   "type": "feasibility",
+   "name": "Mickleham — Donnybrook Rd",
+   "code": "ACQ-0412",
+   "active": true,
+   "created_at": "2026-09-09T12:39:58.792Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "feas0000-0019-0000-0000-000000000000",
+   "type": "feasibility",
+   "name": "Wollert — Epping Rd",
+   "code": "ACQ-0409",
+   "active": true,
+   "created_at": "2026-09-27T12:39:58.793Z",
+   "updated_at": "2026-10-27T12:39:58.793Z"
+  },
+  {
+   "id": "feas0000-0031-0000-0000-000000000000",
+   "type": "feasibility",
+   "name": "Cobblebank — Ferris Rd",
+   "code": "ACQ-0415",
+   "active": true,
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "feas0000-0037-0000-0000-000000000000",
+   "type": "feasibility",
+   "name": "Caroline Springs — Caroline Springs Bvd",
+   "code": "ACQ-0398",
+   "active": true,
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "feas0000-0045-0000-0000-000000000000",
+   "type": "feasibility",
+   "name": "Clyde North — Pattersons Rd",
+   "code": "ACQ-0392",
+   "active": true,
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  }
+ ],
+ "feasibility_data": [
+  {
+   "id": "00000000-0000-0000-0000-0000000000bc",
+   "status": null,
+   "gapmaps_5min": {
+    "ldc": {
+     "children_05": 420000,
+     "places": 200000
+    },
+    "seifa": 5.5,
+    "income_affluence": {
+     "avg_per_household": 102000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 65
+     },
+     {
+      "country": "North East Asia",
+      "pct": 3.64
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 4.1
+     }
+    ]
+   }
+  },
+  {
+   "id": "00000000-0000-0000-0000-0000000000ba",
+   "status": null,
+   "gapmaps_5min": {
+    "ldc": {
+     "children_05": 1500000,
+     "places": 780000
+    },
+    "seifa": 5.5,
+    "income_affluence": {
+     "avg_per_household": 98000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 67
+     },
+     {
+      "country": "North East Asia",
+      "pct": 3.1
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 3.6
+     }
+    ]
+   }
+  },
+  {
+   "id": "feas0000-0004-0000-0000-000000000000",
+   "status": "conditional_go",
+   "prepared_by": "JK",
+   "site_address": "1285 Donnybrook Rd, Mickleham VIC 3064",
+   "site_suburb": "Mickleham",
+   "site_council": "Hume",
+   "site_state": "VIC",
+   "site_type": "Greenfield estate",
+   "proposed_places": 120,
+   "land_size_sqm": 4120,
+   "price": 4200000,
+   "agent": "Colliers — A. Ruan",
+   "proposed_use": "Long day care, 120 places",
+   "site_other_notes": "Dual frontage to Donnybrook Rd and estate collector. Agent indicates adjoining Lot 413 may come to market Q1.",
+   "gapmaps_5min": {
+    "ldc": {
+     "children_05": 2608,
+     "places": 392
+    },
+    "seifa": 6,
+    "income_affluence": {
+     "avg_per_household": 104000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 66
+     },
+     {
+      "country": "North East Asia",
+      "pct": 0.4,
+      "flag": "Low"
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 10.2
+     }
+    ],
+    "age_projection_0_5": {
+     "2026": 2608,
+     "2027": 2540,
+     "2028": 2470,
+     "2029": 2390,
+     "2030": 2300,
+     "2031": 2217,
+     "trend_tag": "Growing",
+     "historical_growth_pct": 32.4
+    },
+    "population_projection": {
+     "total_2026": 28688
+    }
+   },
+   "gapmaps_10min": {
+    "ldc": {
+     "children_05": 6120,
+     "places": 2210
+    },
+    "seifa": 6,
+    "income_affluence": {
+     "avg_per_household": 101000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 67
+     },
+     {
+      "country": "North East Asia",
+      "pct": 0.5,
+      "flag": "Low"
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 9.9
+     }
+    ],
+    "age_projection_0_5": {
+     "2026": 6120,
+     "2027": 6050,
+     "2028": 5980,
+     "2029": 5900,
+     "2030": 5810,
+     "2031": 5700,
+     "trend_tag": "Growing",
+     "historical_growth_pct": 32.4
+    },
+    "population_projection": {
+     "total_2026": 67320
+    }
+   },
+   "feasibility_inputs": {
+    "feaso": {
+     "deal_type": "freehold",
+     "lease_rent": null,
+     "target_settlement": "2027-03-31",
+     "target_fee": 188,
+     "op": {
+      "year3_ebitda": 1240000
+     }
+    }
+   },
+   "report_config": {},
+   "sections_complete": {},
+   "photo_paths": [],
+   "last_saved_at": "2026-10-25T12:39:58.793Z",
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "feas0000-0019-0000-0000-000000000000",
+   "status": "reviewing",
+   "prepared_by": "JK",
+   "site_address": "640 Epping Rd, Wollert VIC 3750",
+   "site_suburb": "Wollert",
+   "site_council": "Whittlesea",
+   "site_state": "VIC",
+   "site_type": "Infill",
+   "proposed_places": 96,
+   "land_size_sqm": 3300,
+   "price": 3600000,
+   "agent": "CBRE — T. Nguyen",
+   "proposed_use": "Long day care, 96 places",
+   "site_other_notes": "",
+   "gapmaps_5min": {
+    "ldc": {
+     "children_05": 1840,
+     "places": 765
+    },
+    "seifa": 5,
+    "income_affluence": {
+     "avg_per_household": 96000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 59
+     },
+     {
+      "country": "North East Asia",
+      "pct": 5.2,
+      "flag": "Watch"
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 12.3
+     }
+    ],
+    "age_projection_0_5": {
+     "2026": 1840,
+     "2027": 1900,
+     "2028": 1950,
+     "2029": 2010,
+     "2030": 2060,
+     "2031": 2100,
+     "trend_tag": "Growing",
+     "historical_growth_pct": 32.4
+    },
+    "population_projection": {
+     "total_2026": 20240
+    }
+   },
+   "gapmaps_10min": null,
+   "feasibility_inputs": {
+    "feaso": {
+     "deal_type": "freehold",
+     "lease_rent": null,
+     "target_settlement": null,
+     "target_fee": 188,
+     "op": null
+    }
+   },
+   "report_config": {},
+   "sections_complete": {},
+   "photo_paths": [],
+   "last_saved_at": "2026-10-27T12:39:58.793Z",
+   "created_at": "2026-09-27T12:39:58.793Z",
+   "updated_at": "2026-10-27T12:39:58.793Z"
+  },
+  {
+   "id": "feas0000-0031-0000-0000-000000000000",
+   "status": "reviewing",
+   "prepared_by": "SM",
+   "site_address": "210 Ferris Rd, Cobblebank VIC 3338",
+   "site_suburb": "Cobblebank",
+   "site_council": "Melton",
+   "site_state": "VIC",
+   "site_type": "Greenfield estate",
+   "proposed_places": 132,
+   "land_size_sqm": 5100,
+   "price": 5100000,
+   "agent": "Savills — M. Lee",
+   "proposed_use": "Long day care, 132 places",
+   "site_other_notes": "",
+   "gapmaps_5min": null,
+   "gapmaps_10min": null,
+   "feasibility_inputs": {
+    "feaso": {
+     "deal_type": "freehold",
+     "lease_rent": null,
+     "target_settlement": null,
+     "target_fee": 188,
+     "op": null
+    }
+   },
+   "report_config": {},
+   "sections_complete": {},
+   "photo_paths": [],
+   "last_saved_at": "2026-09-19T12:39:58.794Z",
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "feas0000-0037-0000-0000-000000000000",
+   "status": "go",
+   "prepared_by": "JK",
+   "site_address": "18 Caroline Springs Bvd, Caroline Springs VIC 3023",
+   "site_suburb": "Caroline Springs",
+   "site_council": "Melton",
+   "site_state": "VIC",
+   "site_type": "Town centre",
+   "proposed_places": 120,
+   "land_size_sqm": 3800,
+   "price": null,
+   "agent": "Direct — landlord",
+   "proposed_use": "Long day care, 120 places",
+   "site_other_notes": "",
+   "gapmaps_5min": {
+    "ldc": {
+     "children_05": 2310,
+     "places": 784
+    },
+    "seifa": 6,
+    "income_affluence": {
+     "avg_per_household": 108000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 56
+     },
+     {
+      "country": "North East Asia",
+      "pct": 2.1,
+      "flag": "Low"
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 13.2
+     }
+    ],
+    "age_projection_0_5": {
+     "2026": 2310,
+     "2027": 2330,
+     "2028": 2350,
+     "2029": 2360,
+     "2030": 2380,
+     "2031": 2400,
+     "trend_tag": "Growing",
+     "historical_growth_pct": 32.4
+    },
+    "population_projection": {
+     "total_2026": 25410
+    }
+   },
+   "gapmaps_10min": null,
+   "feasibility_inputs": {
+    "feaso": {
+     "deal_type": "leasehold",
+     "lease_rent": 420000,
+     "target_settlement": "2026-12-15",
+     "target_fee": 188,
+     "op": {
+      "year3_ebitda": 1410000
+     }
+    }
+   },
+   "report_config": {},
+   "sections_complete": {},
+   "photo_paths": [],
+   "last_saved_at": "2026-10-21T12:39:58.794Z",
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "feas0000-0045-0000-0000-000000000000",
+   "status": "rejected",
+   "prepared_by": "JK",
+   "site_address": "95 Pattersons Rd, Clyde North VIC 3978",
+   "site_suburb": "Clyde North",
+   "site_council": "Casey",
+   "site_state": "VIC",
+   "site_type": "Greenfield estate",
+   "proposed_places": 110,
+   "land_size_sqm": 4000,
+   "price": 3300000,
+   "agent": "JLL — P. Rossi",
+   "proposed_use": "Long day care, 110 places",
+   "site_other_notes": "No-Go: two pipeline permits within 800 m; a competitor opened in 2026 and the site would have been marginal.",
+   "gapmaps_5min": {
+    "ldc": {
+     "children_05": 3100,
+     "places": 1680
+    },
+    "seifa": 5,
+    "income_affluence": {
+     "avg_per_household": 97000
+    },
+    "place_of_birth": [
+     {
+      "country": "Australia",
+      "pct": 62
+     },
+     {
+      "country": "North East Asia",
+      "pct": 6,
+      "flag": "Watch"
+     },
+     {
+      "country": "Southern Asia",
+      "pct": 11.4
+     }
+    ],
+    "age_projection_0_5": {
+     "2026": 3100,
+     "2027": 3150,
+     "2028": 3190,
+     "2029": 3220,
+     "2030": 3240,
+     "2031": 3250,
+     "trend_tag": "Growing",
+     "historical_growth_pct": 32.4
+    },
+    "population_projection": {
+     "total_2026": 34100
+    }
+   },
+   "gapmaps_10min": null,
+   "feasibility_inputs": {
+    "feaso": {
+     "deal_type": "freehold",
+     "lease_rent": null,
+     "target_settlement": null,
+     "target_fee": 188,
+     "op": null
+    }
+   },
+   "report_config": {},
+   "sections_complete": {},
+   "photo_paths": [],
+   "last_saved_at": "2026-10-06T12:39:58.794Z",
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  }
+ ],
+ "feasibility_competitors": [
+  {
+   "id": "comp0000-0005-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 0,
+   "status": "live",
+   "name": "Goodstart Mickleham",
+   "operator": "Goodstart",
+   "address": null,
+   "places": 124,
+   "distance_km": 0.6,
+   "fee": 178,
+   "nqs_rating": "Meeting",
+   "ms_current_capacity": 91,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0006-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 1,
+   "status": "live",
+   "name": "Nido Early School Merrifield",
+   "operator": "Nido",
+   "address": null,
+   "places": 112,
+   "distance_km": 1.1,
+   "fee": 192,
+   "nqs_rating": "Exceeding",
+   "ms_current_capacity": 84,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0007-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 2,
+   "status": "live",
+   "name": "Merrifield Village ELC",
+   "operator": "Independent",
+   "address": null,
+   "places": 86,
+   "distance_km": 1.4,
+   "fee": 165,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0008-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 3,
+   "status": "pipeline",
+   "name": "Lot 412 Annadale Blvd",
+   "operator": null,
+   "address": null,
+   "places": 150,
+   "distance_km": 0.9,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": "Childcare",
+   "project_desc": "Hume planning register",
+   "stage": "Permit issued",
+   "risk_pct": 70,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0009-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 4,
+   "status": "potential",
+   "name": "Kalkallo Town Centre — Lot 7",
+   "operator": null,
+   "address": null,
+   "places": 158,
+   "distance_km": 2.3,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": "Hume planning register",
+   "stage": "DA lodged",
+   "risk_pct": 60,
+   "confidence": "High",
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0010-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 5,
+   "status": "potential",
+   "name": "Donnybrook Rd — corner site, 3,900 m²",
+   "operator": null,
+   "address": null,
+   "places": 120,
+   "distance_km": 1.6,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": "Colliers listing, 12 Oct",
+   "stage": "For sale (childcare use)",
+   "risk_pct": 40,
+   "confidence": "Medium",
+   "count_in_chain": false,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0011-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 6,
+   "status": "potential",
+   "name": "Merrifield Stage 4 community hub",
+   "operator": null,
+   "address": null,
+   "places": null,
+   "distance_km": 1.9,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": "Developer conversation",
+   "stage": "Rumoured",
+   "risk_pct": 20,
+   "confidence": "Low",
+   "count_in_chain": false,
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0020-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 0,
+   "status": "live",
+   "name": "Wollert Early Learning",
+   "operator": "Independent",
+   "address": null,
+   "places": 98,
+   "distance_km": 0.4,
+   "fee": 170,
+   "nqs_rating": null,
+   "ms_current_capacity": 76,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.793Z",
+   "updated_at": "2026-10-27T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0021-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 1,
+   "status": "live",
+   "name": "Guardian Childcare Wollert",
+   "operator": "Guardian",
+   "address": null,
+   "places": 120,
+   "distance_km": 0.9,
+   "fee": 185,
+   "nqs_rating": null,
+   "ms_current_capacity": 89,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.793Z",
+   "updated_at": "2026-10-27T12:39:58.793Z"
+  },
+  {
+   "id": "comp0000-0022-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 2,
+   "status": "live",
+   "name": "Little Learners Epping North",
+   "operator": "Independent",
+   "address": null,
+   "places": 75,
+   "distance_km": 1.2,
+   "fee": 160,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0023-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 3,
+   "status": "live",
+   "name": "Aurora Village ELC",
+   "operator": "G8",
+   "address": null,
+   "places": 110,
+   "distance_km": 1.5,
+   "fee": 182,
+   "nqs_rating": null,
+   "ms_current_capacity": 81,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0024-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 4,
+   "status": "live",
+   "name": "Busy Bees Wollert",
+   "operator": "Busy Bees",
+   "address": null,
+   "places": 112,
+   "distance_km": 1.8,
+   "fee": 190,
+   "nqs_rating": null,
+   "ms_current_capacity": 93,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0025-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 5,
+   "status": "live",
+   "name": "Harvest Home Rd Kinder",
+   "operator": "Council",
+   "address": null,
+   "places": 66,
+   "distance_km": 2,
+   "fee": 120,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0026-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 6,
+   "status": "pipeline",
+   "name": "Epping Rd — Lot 22",
+   "operator": null,
+   "address": null,
+   "places": 140,
+   "distance_km": 1.1,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": "Whittlesea permit register",
+   "stage": "Permit issued",
+   "risk_pct": 80,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0032-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "sort_order": 0,
+   "status": "live",
+   "name": "Cobblebank Village ELC",
+   "operator": "Independent",
+   "address": null,
+   "places": 90,
+   "distance_km": 0.7,
+   "fee": 168,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0033-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "sort_order": 1,
+   "status": "live",
+   "name": "Thornhill Park Kids",
+   "operator": "Independent",
+   "address": null,
+   "places": 104,
+   "distance_km": 1.9,
+   "fee": 172,
+   "nqs_rating": null,
+   "ms_current_capacity": 70,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0038-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "sort_order": 0,
+   "status": "live",
+   "name": "Caroline Springs Early Learning",
+   "operator": "Independent",
+   "address": null,
+   "places": 110,
+   "distance_km": 0.3,
+   "fee": 175,
+   "nqs_rating": null,
+   "ms_current_capacity": 94,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0039-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "sort_order": 1,
+   "status": "live",
+   "name": "Goodstart Caroline Springs",
+   "operator": "Goodstart",
+   "address": null,
+   "places": 130,
+   "distance_km": 0.8,
+   "fee": 180,
+   "nqs_rating": null,
+   "ms_current_capacity": 90,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0040-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "sort_order": 2,
+   "status": "live",
+   "name": "Kids Club Burnside",
+   "operator": "Independent",
+   "address": null,
+   "places": 92,
+   "distance_km": 1.6,
+   "fee": 166,
+   "nqs_rating": null,
+   "ms_current_capacity": 72,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0041-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "sort_order": 3,
+   "status": "live",
+   "name": "Lakeside Community Kinder",
+   "operator": "Council",
+   "address": null,
+   "places": 66,
+   "distance_km": 1,
+   "fee": 115,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0046-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 0,
+   "status": "live",
+   "name": "Clyde North ELC",
+   "operator": "Independent",
+   "address": null,
+   "places": 120,
+   "distance_km": 0.5,
+   "fee": 172,
+   "nqs_rating": null,
+   "ms_current_capacity": 80,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0047-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 1,
+   "status": "live",
+   "name": "Goodstart Clyde North",
+   "operator": "Goodstart",
+   "address": null,
+   "places": 130,
+   "distance_km": 1,
+   "fee": 184,
+   "nqs_rating": null,
+   "ms_current_capacity": 88,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0048-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 2,
+   "status": "live",
+   "name": "Selandra Rise Kids",
+   "operator": "G8",
+   "address": null,
+   "places": 102,
+   "distance_km": 1.3,
+   "fee": 178,
+   "nqs_rating": null,
+   "ms_current_capacity": 77,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": null,
+   "risk_pct": 60,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0049-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 3,
+   "status": "pipeline",
+   "name": "Pattersons Rd — Lot 3",
+   "operator": null,
+   "address": null,
+   "places": 150,
+   "distance_km": 0.6,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": "Under construction",
+   "risk_pct": 95,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  },
+  {
+   "id": "comp0000-0050-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 4,
+   "status": "pipeline",
+   "name": "Berwick Waters Hub",
+   "operator": null,
+   "address": null,
+   "places": 130,
+   "distance_km": 0.8,
+   "fee": null,
+   "nqs_rating": null,
+   "ms_current_capacity": null,
+   "dev_type": null,
+   "project_desc": null,
+   "stage": "Permit issued",
+   "risk_pct": 75,
+   "confidence": null,
+   "count_in_chain": true,
+   "photo_paths": [],
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  }
+ ],
+ "feasibility_schools": [
+  {
+   "id": "schl0000-0012-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Merrifield Primary School",
+   "type": "primary",
+   "sector": "public",
+   "enrolments": 640,
+   "distance_km": 0.8,
+   "address": "Merrifield Bvd, Mickleham",
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "schl0000-0013-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 1,
+   "name": "Hume Anglican Grammar",
+   "type": "P-12",
+   "sector": "independent",
+   "enrolments": 1850,
+   "distance_km": 2.4,
+   "address": "Mt Ridley Rd, Mickleham",
+   "photo_paths": [],
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "schl0000-0027-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Wollert Primary School",
+   "type": "primary",
+   "sector": "public",
+   "enrolments": 910,
+   "distance_km": 0.6,
+   "address": null,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "schl0000-0028-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 1,
+   "name": "Edgars Creek Secondary",
+   "type": "secondary",
+   "sector": "public",
+   "enrolments": 1200,
+   "distance_km": 1.9,
+   "address": null,
+   "photo_paths": [],
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "schl0000-0034-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Cobblebank Primary",
+   "type": "primary",
+   "sector": "public",
+   "enrolments": 560,
+   "distance_km": 0.5,
+   "address": null,
+   "photo_paths": [],
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "schl0000-0042-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Caroline Springs College",
+   "type": "P-12",
+   "sector": "public",
+   "enrolments": 2400,
+   "distance_km": 0.9,
+   "address": null,
+   "photo_paths": [],
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "schl0000-0043-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "sort_order": 1,
+   "name": "Christ the Priest Primary",
+   "type": "primary",
+   "sector": "catholic",
+   "enrolments": 480,
+   "distance_km": 1.2,
+   "address": null,
+   "photo_paths": [],
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  },
+  {
+   "id": "schl0000-0051-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Clyde North Primary",
+   "type": "primary",
+   "sector": "public",
+   "enrolments": 700,
+   "distance_km": 0.7,
+   "address": null,
+   "photo_paths": [],
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  }
+ ],
+ "feasibility_estates": [
+  {
+   "id": "estt0000-0014-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Merrifield",
+   "suburb": "Mickleham",
+   "lots": null,
+   "monthly_rate": 38,
+   "pct_in_catch": 70,
+   "children_per_lot": 0.42,
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "estt0000-0015-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "sort_order": 1,
+   "name": "Annadale",
+   "suburb": "Mickleham",
+   "lots": null,
+   "monthly_rate": 22,
+   "pct_in_catch": 100,
+   "children_per_lot": 0.42,
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "estt0000-0029-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Aurora",
+   "suburb": "Wollert",
+   "lots": null,
+   "monthly_rate": 14,
+   "pct_in_catch": 60,
+   "children_per_lot": 0.42,
+   "created_at": "2026-09-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  },
+  {
+   "id": "estt0000-0035-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Thornhill Park",
+   "suburb": "Cobblebank",
+   "lots": null,
+   "monthly_rate": 30,
+   "pct_in_catch": 80,
+   "children_per_lot": 0.42,
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "estt0000-0036-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "sort_order": 1,
+   "name": "Bridge Road Estate",
+   "suburb": "Cobblebank",
+   "lots": null,
+   "monthly_rate": 18,
+   "pct_in_catch": 50,
+   "children_per_lot": 0.42,
+   "created_at": "2026-09-17T12:39:58.794Z",
+   "updated_at": "2026-09-19T12:39:58.794Z"
+  },
+  {
+   "id": "estt0000-0052-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "sort_order": 0,
+   "name": "Berwick Waters",
+   "suburb": "Clyde North",
+   "lots": null,
+   "monthly_rate": 26,
+   "pct_in_catch": 90,
+   "children_per_lot": 0.42,
+   "created_at": "2026-04-10T12:39:58.794Z",
+   "updated_at": "2026-10-06T12:39:58.794Z"
+  }
+ ],
+ "feasibility_nearby_explorers": [
+  {
+   "id": "near0000-0016-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "explorers_project_id": "proj0000-0001-0000-0000-000000000000",
+   "name": "Explorers Craigieburn",
+   "distance_km": 2.8,
+   "places": 112,
+   "occupancy_pct": 88,
+   "counts": true,
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "near0000-0017-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "explorers_project_id": "proj0000-0002-0000-0000-000000000000",
+   "name": "Explorers Kalkallo",
+   "distance_km": 4.6,
+   "places": 96,
+   "occupancy_pct": 79,
+   "counts": false,
+   "created_at": "2026-09-09T12:39:58.793Z",
+   "updated_at": "2026-10-25T12:39:58.793Z"
+  },
+  {
+   "id": "near0000-0044-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "explorers_project_id": "proj0000-0003-0000-0000-000000000000",
+   "name": "Explorers Tarneit West",
+   "distance_km": 4.9,
+   "places": 104,
+   "occupancy_pct": 86,
+   "counts": false,
+   "created_at": "2026-06-29T12:39:58.794Z",
+   "updated_at": "2026-10-21T12:39:58.794Z"
+  }
+ ],
+ "explorers_centre_data": [
+  {
+   "id": "proj0000-0001-0000-0000-000000000000",
+   "current_fee": 186,
+   "current_ratio": 2.9,
+   "current_occupancy_pct": 88,
+   "current_nqs_rating": "Exceeding"
+  },
+  {
+   "id": "proj0000-0002-0000-0000-000000000000",
+   "current_fee": 182,
+   "current_ratio": 2.4,
+   "current_occupancy_pct": 79,
+   "current_nqs_rating": "Meeting"
+  },
+  {
+   "id": "proj0000-0003-0000-0000-000000000000",
+   "current_fee": 184,
+   "current_ratio": 2.6,
+   "current_occupancy_pct": 86,
+   "current_nqs_rating": "Meeting"
+  }
+ ],
+ "feasibility_comments": [
+  {
+   "id": "cmnt0000-0018-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "author": "JK",
+   "comment": "Step 3 CALD factor looks generous for this catchment — revisit once place-of-birth refreshed.",
+   "section": "demand",
+   "created_at": "2026-10-19T12:39:58.793Z",
+   "updated_at": "2026-10-19T12:39:58.793Z"
+  },
+  {
+   "id": "cmnt0000-0030-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "author": "SM",
+   "comment": "Added 2 competitors from ACECQA refresh.",
+   "section": null,
+   "created_at": "2026-10-27T12:39:58.794Z",
+   "updated_at": "2026-10-27T12:39:58.794Z"
+  }
+ ],
+ "lookups": [
+  {
+   "id": "look0000-0053-0000-0000-000000000000",
+   "category": "feasibility_status",
+   "value": "reviewing",
+   "label": "Reviewing",
+   "order": 10,
+   "active": true
+  },
+  {
+   "id": "look0000-0054-0000-0000-000000000000",
+   "category": "feasibility_status",
+   "value": "conditional_go",
+   "label": "Conditional go",
+   "order": 20,
+   "active": true
+  },
+  {
+   "id": "look0000-0055-0000-0000-000000000000",
+   "category": "feasibility_status",
+   "value": "go",
+   "label": "Go",
+   "order": 30,
+   "active": true
+  },
+  {
+   "id": "look0000-0056-0000-0000-000000000000",
+   "category": "feasibility_status",
+   "value": "rejected",
+   "label": "No-go",
+   "order": 40,
+   "active": true
+  },
+  {
+   "id": "look0000-0057-0000-0000-000000000000",
+   "category": "competitor_stage",
+   "value": "rumoured",
+   "label": "Rumoured",
+   "order": 10,
+   "active": true
+  },
+  {
+   "id": "look0000-0058-0000-0000-000000000000",
+   "category": "competitor_stage",
+   "value": "land_zoned",
+   "label": "Land zoned",
+   "order": 20,
+   "active": true
+  },
+  {
+   "id": "look0000-0059-0000-0000-000000000000",
+   "category": "competitor_stage",
+   "value": "da_lodged",
+   "label": "DA lodged",
+   "order": 30,
+   "active": true
+  },
+  {
+   "id": "look0000-0060-0000-0000-000000000000",
+   "category": "competitor_stage",
+   "value": "for_sale",
+   "label": "For sale (childcare use)",
+   "order": 40,
+   "active": true
+  },
+  {
+   "id": "look0000-0061-0000-0000-000000000000",
+   "category": "competitor_stage",
+   "value": "under_construction",
+   "label": "Under construction",
+   "order": 50,
+   "active": true
+  },
+  {
+   "id": "look0000-0062-0000-0000-000000000000",
+   "category": "competitor_confidence",
+   "value": "high",
+   "label": "High",
+   "order": 10,
+   "active": true
+  },
+  {
+   "id": "look0000-0063-0000-0000-000000000000",
+   "category": "competitor_confidence",
+   "value": "medium",
+   "label": "Medium",
+   "order": 20,
+   "active": true
+  },
+  {
+   "id": "look0000-0064-0000-0000-000000000000",
+   "category": "competitor_confidence",
+   "value": "low",
+   "label": "Low",
+   "order": 30,
+   "active": true
+  },
+  {
+   "id": "look0000-0065-0000-0000-000000000000",
+   "category": "site_type",
+   "value": "Greenfield estate",
+   "label": "Greenfield estate",
+   "order": 10,
+   "active": true
+  },
+  {
+   "id": "look0000-0066-0000-0000-000000000000",
+   "category": "site_type",
+   "value": "Infill",
+   "label": "Infill",
+   "order": 20,
+   "active": true
+  },
+  {
+   "id": "look0000-0067-0000-0000-000000000000",
+   "category": "site_type",
+   "value": "Brownfield",
+   "label": "Brownfield",
+   "order": 30,
+   "active": true
+  },
+  {
+   "id": "look0000-0068-0000-0000-000000000000",
+   "category": "site_type",
+   "value": "Town centre",
+   "label": "Town centre",
+   "order": 40,
+   "active": true
+  }
+ ]
+}

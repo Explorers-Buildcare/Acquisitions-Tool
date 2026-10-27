@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Report — Explorers Acquisitions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="css/app.css">
+<style>
+.sl{display:flex;gap:10px;align-items:center;padding:8px;border-radius:var(--r);border:0;background:none;width:100%;text-align:left;cursor:pointer;color:var(--ink);font:inherit}
+.sl.on{background:var(--sage)}.sl:hover{background:var(--oat)}
+.sl .th{width:64px;height:36px;border-radius:4px;background:#fff;border:1px solid var(--rule-2);flex:none;position:relative;overflow:hidden}
+.sl .th b{position:absolute;left:0;top:0;bottom:0;width:30%;background:var(--pine)}
+.sl .th i{position:absolute;left:0;right:0;top:0;height:6px;background:var(--brush)}
+.sl .t{font-size:12.5px;font-weight:500;line-height:1.25;min-width:0}
+.sl .n{font-size:10.5px;color:var(--ink-3);display:block}
+.sl .w{margin-left:auto;width:8px;height:8px;border-radius:50%;flex:none}
+.slide{aspect-ratio:16/9;background:#fff;border:1px solid var(--rule-2);border-radius:6px;display:flex;overflow:hidden;position:relative}
+.slide .band{position:absolute;left:0;right:0;top:0;height:8px;background:var(--brush)}
+.slide .body{flex:1;padding:36px 32px 28px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.slide .eyebrow{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--brush-ink)}
+.slide .rec{flex:0 0 150px;background:var(--pine-2);color:#fff;border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:4px}
+.slide .kv{background:var(--bg);border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:3px}
+.slide .kv .l{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-2)}
+.slide .kv .v{font-size:22px;font-weight:600;line-height:1.1}
+.slide .kv .s{font-size:10.5px;color:var(--ink-2)}
+.slide .foot{display:flex;justify-content:space-between;font-size:9.5px;color:var(--ink-2)}
+@media print{.appbar,.tabs,aside,.editor,.page-head>div:last-child{display:none!important}.slide{border:0;page-break-after:always}}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script type="module" src="src/pages/report.js"></script>
+</body>
+</html>
