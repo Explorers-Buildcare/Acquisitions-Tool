@@ -42,7 +42,7 @@ function compRow(c, mode, lk){
   : mode === 'pipeline' ? `<tr data-row="${esc(c.id)}" data-coll="feasibility_competitors">
       <td><input data-f="name" value="${esc(c.name || '')}" placeholder="Site / centre name"></td>
       <td><input data-f="project_desc" value="${esc(c.project_desc || '')}" placeholder="Description / permit ref"></td>
-      <td><input data-f="stage" list="pipeline-stages" value="${esc(c.stage || '')}" placeholder="Permit issued"></td>
+      <td><select data-f="stage">${['DA lodged', 'DA approved', 'Permit issued', 'Under construction', 'Fit-out', 'Opening soon'].concat(c.stage && !['DA lodged', 'DA approved', 'Permit issued', 'Under construction', 'Fit-out', 'Opening soon'].some(x => x.toLowerCase() === String(c.stage).toLowerCase()) ? [c.stage] : []).map(st => `<option value="${esc(st)}" ${String(c.stage || '').toLowerCase() === st.toLowerCase() ? 'selected' : ''}>${esc(st)}</option>`).join('')}</select></td>
       <td><input data-f="operator" value="${esc(c.operator || '')}" placeholder="—"></td>
       <td><input data-f="places" class="mono" value="${esc(c.places ?? '')}" inputmode="numeric"></td>
       <td><input data-f="distance_km" class="mono" value="${esc(c.distance_km ?? '')}" inputmode="decimal"></td>
@@ -148,7 +148,6 @@ function render(){
           <button type="button" class="add" data-add="competitor">+ Add competitor</button>
           <div style="border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:12px">
             <div><h3>Pipeline centres</h3><p class="hint" style="margin-top:4px">Approved or under-construction centres that aren't open yet. <strong>Risk %</strong> is the likelihood it completes — the places are weighted by it in step 4 of the demand chain.</p></div>
-            <datalist id="pipeline-stages"><option value="Permit issued"><option value="Under construction"><option value="Fit-out"><option value="Opening soon"></datalist>
             <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / centre</th><th>Description</th><th>Stage</th><th>Operator</th><th>Places</th><th>Dist. km</th><th>Risk %</th><th>Photos</th><th></th></tr></thead>
               <tbody id="pipes">${pipes.map(c => compRow(c, 'pipeline', lk)).join('')}</tbody></table></div>
             <button type="button" class="add" data-add="pipeline">+ Add pipeline centre</button>
