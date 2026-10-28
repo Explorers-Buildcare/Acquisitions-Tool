@@ -49,10 +49,30 @@ function chain(m){
 }
 
 function competitors(b, m){
-  const row = c => `<tr><td style="font-weight:600">${esc(c.name)}${c.project_desc ? `<div style="font-size:11.5px;color:var(--ink-3);font-weight:400">${esc(c.project_desc)}</div>` : ''}</td><td>${esc(c.operator || (c.stage ? statusLabelStage(c.stage) : '—'))}</td><td><span class="chip ${esc(c.status || 'live')}"><i></i>${c.status === 'pipeline' ? 'Permit' : c.status === 'potential' ? 'Potential' : 'Live'}</span></td><td class="mono">${esc(c.places ?? '—')}</td><td class="mono">${c.distance_km != null ? esc(c.distance_km) + ' km' : '—'}</td><td class="mono">${c.fee ? fmtAud(c.fee) : '—'}</td><td class="mono">${c.ms_current_capacity != null ? esc(c.ms_current_capacity) + '%' : '—'}</td><td>${c.status === 'live' ? threat(c, m) : c.count_in_chain === false && c.status === 'potential' ? '<span class="flag tbd">watch only</span>' : `<span class="flag ${c.risk_pct >= 70 ? 'high' : c.risk_pct >= 40 ? 'medium' : 'low'}">${esc(c.risk_pct ?? '—')}% risk</span>`}</td><td>${thumbs(c.photo_paths)}</td></tr>`;
-  const sorted = b.competitors.slice().sort((a, c) => (Number(a.distance_km) || 99) - (Number(c.distance_km) || 99));
-  return `<section class="card"><div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><h2>Competitors · 5-min catchment</h2><p class="sub">${m.liveComps.length} live, ${m.pipeline.length} permitted, ${m.potential.length} potential (${m.potentialCounted.length} counted) · sorted by distance</p></div><a class="btn s" href="${href('new.html', { id }) + '#s4'}">Edit competitors</a></div>
-    <div style="overflow-x:auto"><table><thead><tr><th>Centre</th><th>Operator / stage</th><th>Status</th><th>Places</th><th>Dist.</th><th>Fee / day</th><th>Occupancy</th><th>Threat</th><th>Photos</th></tr></thead><tbody>${sorted.map(row).join('') || '<tr><td colspan="9" class="empty">No competitors entered.</td></tr>'}</tbody></table></div></section>`;
+  const byDist = arr => arr.slice().sort((a, c) => (Number(a.distance_km) || 99) - (Number(c.distance_km) || 99));
+  const dist = c => c.distance_km != null && c.distance_km !== '' ? esc(c.distance_km) + ' km' : '—';
+  const op = c => (c.operator && !/^not found$/i.test(c.operator)) ? esc(c.operator) : '<span class="muted">—</span>';
+  const desc = c => c.project_desc ? `<div style="font-size:11.5px;color:var(--ink-3);font-weight:400">${esc(c.project_desc)}</div>` : '';
+  const edit = `<a class="btn s" href="${href('new.html', { id }) + '#s4'}">Edit</a>`;
+  const head = (title, sub) => `<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap"><div><h2>${title}</h2><p class="sub">${sub}</p></div>${edit}</div>`;
+
+  const live = byDist(m.liveComps);
+  const liveRows = live.map(c => `<tr><td style="font-weight:600">${esc(c.name)}</td><td>${op(c)}</td><td class="mono">${esc(c.places ?? '—')}</td><td class="mono">${dist(c)}</td><td class="mono">${c.fee ? fmtAud(c.fee) : '—'}</td><td class="mono">${c.ms_current_capacity != null ? esc(c.ms_current_capacity) + '%' : '—'}</td><td>${esc(c.nqs_rating || '—')}</td><td>${threat(c, m)}</td><td>${thumbs(c.photo_paths)}</td></tr>`).join('');
+
+  const pipes = byDist(m.pipeline);
+  const weighted = c => Math.round((Number(c.places) || 0) * (Number(c.risk_pct) || 0) / 100);
+  const pipeRows = pipes.map(c => `<tr><td style="font-weight:600">${esc(c.name)}${desc(c)}</td><td>${esc(c.stage || '—')}</td><td>${op(c)}</td><td class="mono">${esc(c.places ?? '—')}</td><td class="mono">${dist(c)}</td><td class="mono">${c.risk_pct != null ? esc(c.risk_pct) + '%' : '—'}</td><td class="mono" style="font-weight:600">${weighted(c) || '—'}</td><td>${thumbs(c.photo_paths)}</td></tr>`).join('');
+  const pipeTotal = pipes.reduce((a, c) => a + weighted(c), 0);
+
+  const pots = byDist(m.potential);
+  const potRows = pots.map(c => `<tr><td style="font-weight:600">${esc(c.name)}${desc(c)}</td><td>${esc(c.stage ? statusLabelStage(c.stage) : '—')}</td><td><span class="flag ${String(c.confidence || '').toLowerCase() || 'tbd'}">${esc(c.confidence || '—')}</span></td><td class="mono">${esc(c.places ?? '—')}</td><td class="mono">${dist(c)}</td><td class="mono">${c.risk_pct != null ? esc(c.risk_pct) + '%' : '—'}</td><td>${c.count_in_chain === false ? '<span class="flag tbd">watch only</span>' : `<span class="flag watch">counted · ${weighted(c)}</span>`}</td><td>${thumbs(c.photo_paths)}</td></tr>`).join('');
+
+  return `<section class="card">${head('Competitors · 5-min catchment', `${live.length} operating centre${live.length === 1 ? '' : 's'} · ${fmtN(m.totalLivePlaces || null)} places${m.avgLiveFee ? ` · avg fee ${fmtAud(m.avgLiveFee)}` : ''} · sorted by distance`)}
+    <div style="overflow-x:auto"><table><thead><tr><th>Centre</th><th>Operator</th><th>Places</th><th>Dist.</th><th>Fee / day</th><th>Occupancy</th><th>NQS</th><th>Threat</th><th>Photos</th></tr></thead><tbody>${liveRows || '<tr><td colspan="9" class="empty">No operating competitors entered.</td></tr>'}</tbody></table></div></section>
+  <section class="card">${head('Pipeline centres', `${pipes.length} approved / under construction · ${fmtN(pipeTotal || null)} risk-weighted places added in step 4 of the demand chain`)}
+    <div style="overflow-x:auto"><table><thead><tr><th>Site / centre</th><th>Stage</th><th>Operator</th><th>Places</th><th>Dist.</th><th>Completion</th><th>Weighted</th><th>Photos</th></tr></thead><tbody>${pipeRows || '<tr><td colspan="8" class="empty">No pipeline centres.</td></tr>'}</tbody></table></div></section>
+  ${pots.length ? `<section class="card">${head('Potential competitors', `${pots.length} possible site${pots.length === 1 ? '' : 's'} · ${m.potentialCounted.length} counted in the chain, the rest watch-only`)}
+    <div style="overflow-x:auto"><table><thead><tr><th>Site</th><th>Stage</th><th>Confidence</th><th>Est. places</th><th>Dist.</th><th>Completion</th><th>In chain</th><th>Photos</th></tr></thead><tbody>${potRows}</tbody></table></div></section>` : ''}`;
 }
 const statusLabelStage = s => (adapter.lookups('competitor_stage').find(o => o.value === s) || { label: s }).label;
 function threat(c, m){

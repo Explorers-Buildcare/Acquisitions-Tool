@@ -51,7 +51,7 @@ const heroRatio = await page.locator('.hero.primary .v').textContent();
 ok(/^\d\.\d\d×$/.test(heroRatio.trim()), `hero ratio formatted (${heroRatio.trim()})`);
 ok((await page.locator('.chain .step').count()) === 5, 'demand chain has 5 steps');
 ok((await page.locator('.chain .step.weak').count()) === 2, 'participation + CALD marked weak');
-ok(await page.locator('text=Potential').first().isVisible(), 'potential competitors listed');
+ok(await page.locator('h2', { hasText: 'Pipeline centres' }).isVisible() && await page.locator('h2', { hasText: 'Potential competitors' }).isVisible(), 'market tab splits competitors / pipeline / potential');
 ok(await page.locator('text=watch only').first().isVisible(), 'un-counted potential shows watch only');
 await page.click('[data-tab="site"]');
 ok(await page.locator('text=Site details').isVisible(), 'site tab renders');
