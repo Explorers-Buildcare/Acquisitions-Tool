@@ -81,9 +81,13 @@ function render(){
   const lk = { stage: adapter.lookups('competitor_stage'), conf: adapter.lookups('competitor_confidence'), site: adapter.lookups('site_type') };
   const comps = b ? b.competitors.filter(c => c.status !== 'potential') : [];
   const pots = b ? b.competitors.filter(c => c.status === 'potential') : [];
-  const dbCentres = adapter.list('projects').filter(p => p.type === 'centre' || p.type === 'project');
+  // Centres only (type 'centre', seeded by sql/26 from the website). The PM
+  // tool's construction projects (type 'project') are NOT centres — they are
+  // only shown if this feasibility already links one from the old tool.
+  const linked = new Set((b ? b.nearby : []).map(n => n.explorers_project_id));
+  const dbCentres = adapter.list('projects').filter(p => p.type === 'centre' || (p.type === 'project' && linked.has(p.id)));
   const seen = new Set(dbCentres.map(c => c.id));
-  const centres = [...dbCentres.map(c => ({ ...c, status: c.active === false ? 'opening' : 'open' })), ...EXPLORERS_CENTRES.filter(c => !seen.has(c.id))].sort((a, c) => a.name.localeCompare(c.name));
+  const centres = [...dbCentres.map(c => ({ ...c, status: c.type === 'project' ? 'project' : c.active === false ? 'opening' : 'open' })), ...EXPLORERS_CENTRES.filter(c => !seen.has(c.id))].sort((a, c) => a.name.localeCompare(c.name));
   const ro = !adapter.canWrite();
   const done = { s1: !!(p.name && fd.site_address && fd.proposed_places), s2: !!(fd.price || feaso.lease_rent), s3: !!fd.gapmaps_5min, s4: comps.length > 0, s5: (b ? b.schools.length : 0) > 0, s6: (b ? b.estates.length : 0) > 0, s7: (b ? b.nearby.length : 0) > 0, s8: !!(fd.site_other_notes || (fd.photo_paths || []).length) };
 
@@ -148,7 +152,7 @@ function render(){
         </section>
         <section class="card sec" id="s7"><h2><span class="n">7</span>Nearby Explorers centres</h2><p class="hint">Tick the centres within reach of this site and enter the distance; ticked centres feed the cannibalisation check. List: the 28 centres on explorers.com.au plus any centres in the database.</p>
           <input id="centre-search" placeholder="Filter by suburb or name…" style="max-width:320px;border:1px solid var(--rule-2);border-radius:var(--r);padding:9px 11px;font:inherit;background:#fff">
-          <div class="grid-3" id="nearby">${centres.map(c => { const n = b ? b.nearby.find(x => x.explorers_project_id === c.id) : null; const ecd = adapter.get('explorers_centre_data', c.id) || {}; return `<label class="nearby" data-centre="${esc((c.name + ' ' + (c.address || '') + ' ' + (c.suburb || '')).toLowerCase())}" style="${n ? 'border-color:var(--moss);background:var(--sage)' : ''}"><input type="checkbox" data-nearby="${esc(c.id)}" ${n ? 'checked' : ''}><span style="flex:1;min-width:0"><span style="font-weight:600">${esc(c.name)}</span>${c.status === 'opening' ? ' <span class="chip reviewing" style="font-size:10.5px;padding:1px 7px"><i></i>opening</span>' : ''}<br><span style="font-size:12px;color:var(--ink-3)">${esc(c.address || '')}${ecd.current_occupancy_pct != null ? ' · ' + esc(ecd.current_occupancy_pct) + '% occ.' : ''}</span></span>${n ? `<span class="f" style="flex:0 0 76px"><input data-nearby-km="${esc(n.id)}" class="mono" value="${esc(n.distance_km ?? '')}" placeholder="km" inputmode="decimal" style="padding:6px 8px;min-height:32px" aria-label="Distance km"></span>` : ''}</label>`; }).join('')}</div>
+          <div class="grid-3" id="nearby">${centres.map(c => { const n = b ? b.nearby.find(x => x.explorers_project_id === c.id) : null; const ecd = adapter.get('explorers_centre_data', c.id) || {}; return `<label class="nearby" data-centre="${esc((c.name + ' ' + (c.address || '') + ' ' + (c.suburb || '')).toLowerCase())}" style="${n ? 'border-color:var(--moss);background:var(--sage)' : ''}"><input type="checkbox" data-nearby="${esc(c.id)}" ${n ? 'checked' : ''}><span style="flex:1;min-width:0"><span style="font-weight:600">${esc(c.name)}</span>${c.status === 'opening' ? ' <span class="chip reviewing" style="font-size:10.5px;padding:1px 7px"><i></i>opening</span>' : c.status === 'project' ? ' <span class="chip" style="font-size:10.5px;padding:1px 7px"><i></i>development project</span>' : ''}<br><span style="font-size:12px;color:var(--ink-3)">${esc(c.address || '')}${ecd.current_occupancy_pct != null ? ' · ' + esc(ecd.current_occupancy_pct) + '% occ.' : ''}</span></span>${n ? `<span class="f" style="flex:0 0 76px"><input data-nearby-km="${esc(n.id)}" class="mono" value="${esc(n.distance_km ?? '')}" placeholder="km" inputmode="decimal" style="padding:6px 8px;min-height:32px" aria-label="Distance km"></span>` : ''}</label>`; }).join('')}</div>
         </section>
         <section class="card sec" id="s8"><h2><span class="n">8</span>Files &amp; notes</h2>
           <div class="grid-2">
