@@ -70,8 +70,8 @@ ok((await page.locator('#pipes tr').count()) === 1, 'pipeline centres table: 1 p
 await page.click('[data-add="pipeline"]');
 ok((await page.locator('#pipes tr').count()) === 2, 'add pipeline centre row');
 await page.locator('#pipes tr').last().locator('[data-f="stage"]').selectOption('Already open');
-await page.waitForFunction(() => window.__adapter.list('feasibility_competitors').some(c => c.stage === 'Already open' && c.risk_pct === 100));
-ok(true, 'Already open sets completion to 100%');
+await page.waitForFunction(() => window.__adapter.list('feasibility_competitors').some(c => c.stage === 'Already open' && c.risk_pct === 0));
+ok(true, 'Already open sets completion to 0% (already in GapMaps places)');
 await page.locator('#pipes tr').last().locator('[data-del]').click();
 ok((await page.locator('#pots tr').count()) === 3, 'potential table: 3 rows');
 await page.fill('#proposed_places', '130'); await page.locator('#proposed_places').dispatchEvent('change');

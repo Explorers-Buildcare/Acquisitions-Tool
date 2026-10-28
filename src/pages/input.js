@@ -25,7 +25,7 @@ function pc(paths, onAddAttr){
 }
 
 const STAGES = ['DA lodged', 'DA approved', 'Permit issued', 'Under construction', 'Fit-out', 'Opening soon', 'Already open'];
-const STAGE_DEFAULT_PCT = { 'DA lodged': 40, 'DA approved': 60, 'Permit issued': 60, 'Under construction': 90, 'Fit-out': 95, 'Opening soon': 100, 'Already open': 100 };
+const STAGE_DEFAULT_PCT = { 'DA lodged': 40, 'DA approved': 60, 'Permit issued': 60, 'Under construction': 90, 'Fit-out': 95, 'Opening soon': 100, 'Already open': 0 };
 function compRow(c, mode, lk){
   const potential = mode === 'potential';
   const stageOpts = lk.stage.map(o => `<option value="${esc(o.value)}" ${c.stage === o.value || c.stage === o.label ? 'selected' : ''}>${esc(o.label)}</option>`).join('');
@@ -149,7 +149,7 @@ function render(){
             <tbody id="comps">${comps.map(c => compRow(c, 'live', lk)).join('')}</tbody></table></div>
           <button type="button" class="add" data-add="competitor">+ Add competitor</button>
           <div style="border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:12px">
-            <div><h3>Pipeline centres</h3><p class="hint" style="margin-top:4px">Approved, under-construction or newly opened centres not yet in the competitor list. <strong>Completion %</strong> is the likelihood it completes — its places count at that percentage in step 4 of the demand chain. Choosing a stage sets a default (Already open = 100 %); edit it if you know better.</p></div>
+            <div><h3>Pipeline centres</h3><p class="hint" style="margin-top:4px">Approved, under-construction or newly opened centres not yet in the competitor list. <strong>Completion %</strong> is the likelihood it completes — its places count at that percentage in step 4 of the demand chain. Choosing a stage sets a default; edit it if you know better. <strong>Already open = 0 %</strong> — its places are already in the GapMaps licensed-places figure, so adding them again would double-count.</p></div>
             <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / centre</th><th>Description</th><th>Stage</th><th>Operator</th><th>Places</th><th>Dist. km</th><th title="Likelihood it completes — its places are counted at this percentage in the demand chain">Completion %</th><th>Photos</th><th></th></tr></thead>
               <tbody id="pipes">${pipes.map(c => compRow(c, 'pipeline', lk)).join('')}</tbody></table></div>
             <button type="button" class="add" data-add="pipeline">+ Add pipeline centre</button>
