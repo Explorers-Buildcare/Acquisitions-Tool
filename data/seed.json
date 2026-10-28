@@ -1,26 +1,257 @@
 {
- "generated_at": "2026-10-28T01:14:08.065Z",
+ "generated_at": "2026-10-28T01:42:40.587Z",
  "projects": [
   {
-   "id": "proj0000-0001-0000-0000-000000000000",
-   "type": "project",
-   "name": "Explorers Craigieburn",
-   "code": "EXP-CRB",
-   "active": true
+   "id": "3ad1f806-d9ba-58fc-8194-35ef2b269a5b",
+   "type": "centre",
+   "name": "Explorers Armadale",
+   "code": "EXP-ARMADALE",
+   "address": "117A Kooyong Road, Armadale VIC 3143",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/armadale"
   },
   {
-   "id": "proj0000-0002-0000-0000-000000000000",
-   "type": "project",
-   "name": "Explorers Kalkallo",
-   "code": "EXP-KAL",
-   "active": true
+   "id": "75f8eec1-0452-58e1-9394-06070f1b7a68",
+   "type": "centre",
+   "name": "Explorers Armstrong Creek",
+   "code": "EXP-ARMSTRONGCRE",
+   "address": "12-16 Main St, Armstrong Creek VIC 3217",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/armstrong-creek"
   },
   {
-   "id": "proj0000-0003-0000-0000-000000000000",
-   "type": "project",
-   "name": "Explorers Tarneit West",
-   "code": "EXP-TRW",
-   "active": true
+   "id": "c57fc188-209f-56f6-9ad5-61abb0cc6a31",
+   "type": "centre",
+   "name": "Explorers Ascot Vale",
+   "code": "EXP-ASCOTVALE",
+   "address": "307 Maribyrnong Road, Ascot Vale VIC 3032",
+   "active": false,
+   "notes": "https://explorers.com.au/centres/ascot-vale"
+  },
+  {
+   "id": "210825a5-17ea-5d82-8ce8-9967da9d623d",
+   "type": "centre",
+   "name": "Explorers Ashwood",
+   "code": "EXP-ASHWOOD",
+   "address": "205 High Street Road, Ashwood VIC 3147",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/ashwood"
+  },
+  {
+   "id": "4de50dc2-da18-5e5a-814a-b6ba368923b9",
+   "type": "centre",
+   "name": "Explorers Beaconsfield",
+   "code": "EXP-BEACONSFIELD",
+   "address": "2 Pink Hill Blvd, Beaconsfield VIC 3807",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/beaconsfield"
+  },
+  {
+   "id": "beb4736d-61f4-53a4-a0a4-ee04c10d31dd",
+   "type": "centre",
+   "name": "Explorers Boronia",
+   "code": "EXP-BORONIA",
+   "address": "265 Boronia Road, Boronia VIC 3155",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/boronia"
+  },
+  {
+   "id": "950f9245-9fe8-5e15-b5f7-7e99b76ac839",
+   "type": "centre",
+   "name": "Explorers Brighton East",
+   "code": "EXP-BRIGHTONEAST",
+   "address": "761-763 Nepean Highway, Brighton East VIC 3187",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/brighton-east"
+  },
+  {
+   "id": "4f33fc21-4023-5e5b-a1c0-1ce4b51256f3",
+   "type": "centre",
+   "name": "Explorers Charlemont",
+   "code": "EXP-CHARLEMONT",
+   "address": "3 Baratheon Road, Charlemont VIC 3217",
+   "active": false,
+   "notes": "https://explorers.com.au/centres/charlemont"
+  },
+  {
+   "id": "9dcbaf93-05fa-5bd2-bda8-c46ce2e32232",
+   "type": "centre",
+   "name": "Explorers Clyde North",
+   "code": "EXP-CLYDENORTH",
+   "address": "15S Australorp Drive, Clyde North VIC 3978",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/clyde-north"
+  },
+  {
+   "id": "6c95d12e-47d4-54b9-a829-274ded9344c2",
+   "type": "centre",
+   "name": "Explorers Croydon",
+   "code": "EXP-CROYDON",
+   "address": "84-86 Hull Road, Croydon VIC 3136",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/croydon"
+  },
+  {
+   "id": "8de0bd85-0f8b-5d78-a9f0-2ea04864d92e",
+   "type": "centre",
+   "name": "Explorers Dandenong",
+   "code": "EXP-DANDENONG",
+   "address": "159 Princes Hwy, Dandenong VIC 3175",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/dandenong"
+  },
+  {
+   "id": "55575f94-414f-56b0-bad9-fe88cb6e19fb",
+   "type": "centre",
+   "name": "Explorers Essendon",
+   "code": "EXP-ESSENDON",
+   "address": "30-32 Lincoln Road, Essendon VIC 3040",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/essendon"
+  },
+  {
+   "id": "2b156ce4-0977-5add-9057-04889cb167bf",
+   "type": "centre",
+   "name": "Explorers Frankston North",
+   "code": "EXP-FRANKSTONNOR",
+   "address": "2-8 Ballarto Road, Frankston North VIC 3200",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/frankston-north"
+  },
+  {
+   "id": "baa80af0-8727-5b84-9e57-4605857fda15",
+   "type": "centre",
+   "name": "Explorers Greenvale",
+   "code": "EXP-GREENVALE",
+   "address": "1 Darmain Drive, Greenvale VIC 3059",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/greenvale"
+  },
+  {
+   "id": "d17182ec-152c-556b-a2be-f22eefa982ed",
+   "type": "centre",
+   "name": "Explorers Lynbrook",
+   "code": "EXP-LYNBROOK",
+   "address": "7S Henning Avenue, Lynbrook VIC 3975",
+   "active": false,
+   "notes": "https://explorers.com.au/centres/lynbrook"
+  },
+  {
+   "id": "75ce0134-d899-556b-bb50-3e723425cf43",
+   "type": "centre",
+   "name": "Explorers Mornington",
+   "code": "EXP-MORNINGTON",
+   "address": "102 Strachans Road, Mornington VIC 3931",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/mornington"
+  },
+  {
+   "id": "a930e2c8-bbae-56b1-a9f2-7bddf3e0b98e",
+   "type": "centre",
+   "name": "Explorers Mt Cottrell",
+   "code": "EXP-MTCOTTRELL",
+   "address": "55 Goodison Grove, Mt Cottrell VIC 3024",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/mt-cottrell"
+  },
+  {
+   "id": "4da10f49-a75a-57bd-8207-8027a76ed5a2",
+   "type": "centre",
+   "name": "Explorers Nunawading",
+   "code": "EXP-NUNAWADING",
+   "address": "86-88 Springvale Road, Nunawading VIC 3131",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/nunawading"
+  },
+  {
+   "id": "d32ec38d-05e4-531a-9d2d-50557dc9fe93",
+   "type": "centre",
+   "name": "Explorers Officer",
+   "code": "EXP-OFFICER",
+   "address": "1 Niki Place, Officer VIC 3809",
+   "active": false,
+   "notes": "https://explorers.com.au/centres/officer"
+  },
+  {
+   "id": "acd19130-b461-5d72-acb4-5845fe2330cd",
+   "type": "centre",
+   "name": "Explorers Shepparton North",
+   "code": "EXP-SHEPPARTONNO",
+   "address": "2 Samaria Boulevard, Shepparton North VIC 3631",
+   "active": false,
+   "notes": "https://explorers.com.au/centres/shepparton-north"
+  },
+  {
+   "id": "a7c98117-9b3e-5d6f-94a5-7f2ecb551090",
+   "type": "centre",
+   "name": "Explorers Somerville",
+   "code": "EXP-SOMERVILLE",
+   "address": "103 Bungower Road, Somerville VIC 3912",
+   "active": false,
+   "notes": "https://explorers.com.au/centres/somerville"
+  },
+  {
+   "id": "931e86f3-10d5-51c3-89db-f23866c77539",
+   "type": "centre",
+   "name": "Explorers Surrey Hills Elgar Road",
+   "code": "EXP-SURREYHILLSE",
+   "address": "221 Elgar Road, Surrey Hills VIC 3127",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/surrey-hills-elgar-road"
+  },
+  {
+   "id": "4fdc172b-9038-5f7b-a2e2-de02d111faf1",
+   "type": "centre",
+   "name": "Explorers Surrey Hills Stanley Terrace",
+   "code": "EXP-SURREYHILLSS",
+   "address": "1 Stanley Terrace, Surrey Hills VIC 3127",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/surrey-hills-stanley-terrace"
+  },
+  {
+   "id": "e06cdbb4-1522-50d9-9f5f-bd40bf3168bc",
+   "type": "centre",
+   "name": "Explorers Tarneit",
+   "code": "EXP-TARNEIT",
+   "address": "80 Homebush Drive, Tarneit VIC 3029",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/tarneit"
+  },
+  {
+   "id": "c751ae2a-07ca-5499-a499-77da11d26cc1",
+   "type": "centre",
+   "name": "Explorers Wallan",
+   "code": "EXP-WALLAN",
+   "address": "101-103 Stanley St, Wallan VIC 3756",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/wallan"
+  },
+  {
+   "id": "14cbb4e6-f33b-51da-999d-fc48e3c4b8a8",
+   "type": "centre",
+   "name": "Explorers Werribee",
+   "code": "EXP-WERRIBEE",
+   "address": "24 Scotsburn Grove, Werribee VIC 3030",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/werribee"
+  },
+  {
+   "id": "d69e42b3-9f20-5020-a101-06030b5a3bbc",
+   "type": "centre",
+   "name": "Explorers Williams Landing",
+   "code": "EXP-WILLIAMSLAND",
+   "address": "2 Fogarty Street, Williams Landing VIC 3027",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/williams-landing"
+  },
+  {
+   "id": "6559cd34-fd16-5d07-8d86-6a498d0d7552",
+   "type": "centre",
+   "name": "Explorers Williamstown",
+   "code": "EXP-WILLIAMSTOWN",
+   "address": "130 Ferguson Street, Williamstown VIC 3016",
+   "active": true,
+   "notes": "https://explorers.com.au/centres/williamstown"
   },
   {
    "id": "00000000-0000-0000-0000-0000000000bc",
@@ -37,49 +268,49 @@
    "active": false
   },
   {
-   "id": "feas0000-0004-0000-0000-000000000000",
+   "id": "feas0000-0001-0000-0000-000000000000",
    "type": "feasibility",
    "name": "Mickleham — Donnybrook Rd",
    "code": "ACQ-0412",
    "active": true,
-   "created_at": "2026-09-10T01:14:08.063Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.585Z",
+   "updated_at": "2026-10-26T01:42:40.585Z"
   },
   {
-   "id": "feas0000-0019-0000-0000-000000000000",
+   "id": "feas0000-0016-0000-0000-000000000000",
    "type": "feasibility",
    "name": "Wollert — Epping Rd",
    "code": "ACQ-0409",
    "active": true,
-   "created_at": "2026-09-28T01:14:08.064Z",
-   "updated_at": "2026-10-28T01:14:08.064Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "feas0000-0031-0000-0000-000000000000",
+   "id": "feas0000-0028-0000-0000-000000000000",
    "type": "feasibility",
    "name": "Cobblebank — Ferris Rd",
    "code": "ACQ-0415",
    "active": true,
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "feas0000-0037-0000-0000-000000000000",
+   "id": "feas0000-0034-0000-0000-000000000000",
    "type": "feasibility",
    "name": "Caroline Springs — Caroline Springs Bvd",
    "code": "ACQ-0398",
    "active": true,
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "feas0000-0045-0000-0000-000000000000",
+   "id": "feas0000-0042-0000-0000-000000000000",
    "type": "feasibility",
    "name": "Clyde North — Pattersons Rd",
    "code": "ACQ-0392",
    "active": true,
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   }
  ],
  "feasibility_data": [
@@ -140,7 +371,7 @@
    }
   },
   {
-   "id": "feas0000-0004-0000-0000-000000000000",
+   "id": "feas0000-0001-0000-0000-000000000000",
    "status": "conditional_go",
    "prepared_by": "JK",
    "site_address": "1285 Donnybrook Rd, Mickleham VIC 3064",
@@ -254,12 +485,12 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-26T01:14:08.064Z",
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "last_saved_at": "2026-10-26T01:42:40.585Z",
+   "created_at": "2026-09-10T01:42:40.585Z",
+   "updated_at": "2026-10-26T01:42:40.585Z"
   },
   {
-   "id": "feas0000-0019-0000-0000-000000000000",
+   "id": "feas0000-0016-0000-0000-000000000000",
    "status": "reviewing",
    "prepared_by": "JK",
    "site_address": "640 Epping Rd, Wollert VIC 3750",
@@ -329,12 +560,12 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-28T01:14:08.064Z",
-   "created_at": "2026-09-28T01:14:08.064Z",
-   "updated_at": "2026-10-28T01:14:08.064Z"
+   "last_saved_at": "2026-10-28T01:42:40.586Z",
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "feas0000-0031-0000-0000-000000000000",
+   "id": "feas0000-0028-0000-0000-000000000000",
    "status": "reviewing",
    "prepared_by": "SM",
    "site_address": "210 Ferris Rd, Cobblebank VIC 3338",
@@ -362,12 +593,12 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-09-20T01:14:08.065Z",
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "last_saved_at": "2026-09-20T01:42:40.586Z",
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "feas0000-0037-0000-0000-000000000000",
+   "id": "feas0000-0034-0000-0000-000000000000",
    "status": "go",
    "prepared_by": "JK",
    "site_address": "18 Caroline Springs Bvd, Caroline Springs VIC 3023",
@@ -439,12 +670,12 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-22T01:14:08.065Z",
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "last_saved_at": "2026-10-22T01:42:40.586Z",
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "feas0000-0045-0000-0000-000000000000",
+   "id": "feas0000-0042-0000-0000-000000000000",
    "status": "rejected",
    "prepared_by": "JK",
    "site_address": "95 Pattersons Rd, Clyde North VIC 3978",
@@ -514,15 +745,15 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-07T01:14:08.065Z",
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "last_saved_at": "2026-10-07T01:42:40.586Z",
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   }
  ],
  "feasibility_competitors": [
   {
-   "id": "comp0000-0005-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0002-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 0,
    "status": "live",
    "name": "Goodstart Mickleham",
@@ -540,12 +771,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0006-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0003-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 1,
    "status": "live",
    "name": "Nido Early School Merrifield",
@@ -563,12 +794,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0007-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0004-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 2,
    "status": "live",
    "name": "Merrifield Village ELC",
@@ -586,12 +817,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0008-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0005-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 3,
    "status": "pipeline",
    "name": "Lot 412 Annadale Blvd",
@@ -609,12 +840,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0009-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0006-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 4,
    "status": "potential",
    "name": "Kalkallo Town Centre — Lot 7",
@@ -632,12 +863,12 @@
    "confidence": "High",
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0010-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0007-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 5,
    "status": "potential",
    "name": "Donnybrook Rd — corner site, 3,900 m²",
@@ -655,12 +886,12 @@
    "confidence": "Medium",
    "count_in_chain": false,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0011-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "comp0000-0008-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 6,
    "status": "potential",
    "name": "Merrifield Stage 4 community hub",
@@ -678,12 +909,12 @@
    "confidence": "Low",
    "count_in_chain": false,
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0020-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0017-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 0,
    "status": "live",
    "name": "Wollert Early Learning",
@@ -701,12 +932,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.064Z",
-   "updated_at": "2026-10-28T01:14:08.064Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0021-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0018-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 1,
    "status": "live",
    "name": "Guardian Childcare Wollert",
@@ -724,12 +955,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.064Z",
-   "updated_at": "2026-10-28T01:14:08.064Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0022-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0019-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 2,
    "status": "live",
    "name": "Little Learners Epping North",
@@ -747,12 +978,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0023-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0020-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 3,
    "status": "live",
    "name": "Aurora Village ELC",
@@ -770,12 +1001,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0024-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0021-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 4,
    "status": "live",
    "name": "Busy Bees Wollert",
@@ -793,12 +1024,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0025-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0022-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 5,
    "status": "live",
    "name": "Harvest Home Rd Kinder",
@@ -816,12 +1047,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0026-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "comp0000-0023-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 6,
    "status": "pipeline",
    "name": "Epping Rd — Lot 22",
@@ -839,12 +1070,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0032-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "id": "comp0000-0029-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0028-0000-0000-000000000000",
    "sort_order": 0,
    "status": "live",
    "name": "Cobblebank Village ELC",
@@ -862,12 +1093,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0033-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "id": "comp0000-0030-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0028-0000-0000-000000000000",
    "sort_order": 1,
    "status": "live",
    "name": "Thornhill Park Kids",
@@ -885,12 +1116,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0038-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "id": "comp0000-0035-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
    "sort_order": 0,
    "status": "live",
    "name": "Caroline Springs Early Learning",
@@ -908,12 +1139,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0039-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "id": "comp0000-0036-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
    "sort_order": 1,
    "status": "live",
    "name": "Goodstart Caroline Springs",
@@ -931,12 +1162,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0040-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "id": "comp0000-0037-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
    "sort_order": 2,
    "status": "live",
    "name": "Kids Club Burnside",
@@ -954,12 +1185,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0041-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "id": "comp0000-0038-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
    "sort_order": 3,
    "status": "live",
    "name": "Lakeside Community Kinder",
@@ -977,12 +1208,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0046-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "comp0000-0043-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 0,
    "status": "live",
    "name": "Clyde North ELC",
@@ -1000,12 +1231,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0047-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "comp0000-0044-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 1,
    "status": "live",
    "name": "Goodstart Clyde North",
@@ -1023,12 +1254,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0048-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "comp0000-0045-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 2,
    "status": "live",
    "name": "Selandra Rise Kids",
@@ -1046,12 +1277,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0049-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "comp0000-0046-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 3,
    "status": "pipeline",
    "name": "Pattersons Rd — Lot 3",
@@ -1069,12 +1300,12 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   },
   {
-   "id": "comp0000-0050-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "comp0000-0047-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 4,
    "status": "pipeline",
    "name": "Berwick Waters Hub",
@@ -1092,14 +1323,14 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   }
  ],
  "feasibility_schools": [
   {
-   "id": "schl0000-0012-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "schl0000-0009-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Merrifield Primary School",
    "type": "primary",
@@ -1108,12 +1339,12 @@
    "distance_km": 0.8,
    "address": "Merrifield Bvd, Mickleham",
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0013-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "schl0000-0010-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 1,
    "name": "Hume Anglican Grammar",
    "type": "P-12",
@@ -1122,12 +1353,12 @@
    "distance_km": 2.4,
    "address": "Mt Ridley Rd, Mickleham",
    "photo_paths": [],
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0027-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "schl0000-0024-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Wollert Primary School",
    "type": "primary",
@@ -1136,12 +1367,12 @@
    "distance_km": 0.6,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0028-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "schl0000-0025-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 1,
    "name": "Edgars Creek Secondary",
    "type": "secondary",
@@ -1150,12 +1381,12 @@
    "distance_km": 1.9,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0034-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "id": "schl0000-0031-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0028-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Cobblebank Primary",
    "type": "primary",
@@ -1164,12 +1395,12 @@
    "distance_km": 0.5,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0042-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "id": "schl0000-0039-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Caroline Springs College",
    "type": "P-12",
@@ -1178,12 +1409,12 @@
    "distance_km": 0.9,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0043-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
+   "id": "schl0000-0040-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
    "sort_order": 1,
    "name": "Christ the Priest Primary",
    "type": "primary",
@@ -1192,12 +1423,12 @@
    "distance_km": 1.2,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   },
   {
-   "id": "schl0000-0051-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "schl0000-0048-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Clyde North Primary",
    "type": "primary",
@@ -1206,14 +1437,14 @@
    "distance_km": 0.7,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   }
  ],
  "feasibility_estates": [
   {
-   "id": "estt0000-0014-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "estt0000-0011-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Merrifield",
    "suburb": "Mickleham",
@@ -1221,12 +1452,12 @@
    "monthly_rate": 38,
    "pct_in_catch": 70,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "estt0000-0015-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "estt0000-0012-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "sort_order": 1,
    "name": "Annadale",
    "suburb": "Mickleham",
@@ -1234,12 +1465,12 @@
    "monthly_rate": 22,
    "pct_in_catch": 100,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "estt0000-0029-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "estt0000-0026-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Aurora",
    "suburb": "Wollert",
@@ -1247,12 +1478,12 @@
    "monthly_rate": 14,
    "pct_in_catch": 60,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-09-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   },
   {
-   "id": "estt0000-0035-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "id": "estt0000-0032-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0028-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Thornhill Park",
    "suburb": "Cobblebank",
@@ -1260,12 +1491,12 @@
    "monthly_rate": 30,
    "pct_in_catch": 80,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "estt0000-0036-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0031-0000-0000-000000000000",
+   "id": "estt0000-0033-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0028-0000-0000-000000000000",
    "sort_order": 1,
    "name": "Bridge Road Estate",
    "suburb": "Cobblebank",
@@ -1273,12 +1504,12 @@
    "monthly_rate": 18,
    "pct_in_catch": 50,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-18T01:14:08.065Z",
-   "updated_at": "2026-09-20T01:14:08.065Z"
+   "created_at": "2026-09-18T01:42:40.586Z",
+   "updated_at": "2026-09-20T01:42:40.586Z"
   },
   {
-   "id": "estt0000-0052-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0045-0000-0000-000000000000",
+   "id": "estt0000-0049-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0042-0000-0000-000000000000",
    "sort_order": 0,
    "name": "Berwick Waters",
    "suburb": "Clyde North",
@@ -1286,65 +1517,65 @@
    "monthly_rate": 26,
    "pct_in_catch": 90,
    "children_per_lot": 0.42,
-   "created_at": "2026-04-11T01:14:08.065Z",
-   "updated_at": "2026-10-07T01:14:08.065Z"
+   "created_at": "2026-04-11T01:42:40.586Z",
+   "updated_at": "2026-10-07T01:42:40.586Z"
   }
  ],
  "feasibility_nearby_explorers": [
   {
-   "id": "near0000-0016-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
-   "explorers_project_id": "proj0000-0001-0000-0000-000000000000",
-   "name": "Explorers Craigieburn",
+   "id": "near0000-0013-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
+   "explorers_project_id": "baa80af0-8727-5b84-9e57-4605857fda15",
+   "name": "Explorers Greenvale",
    "distance_km": 2.8,
    "places": 112,
    "occupancy_pct": 88,
    "counts": true,
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "near0000-0017-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
-   "explorers_project_id": "proj0000-0002-0000-0000-000000000000",
-   "name": "Explorers Kalkallo",
+   "id": "near0000-0014-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
+   "explorers_project_id": "c751ae2a-07ca-5499-a499-77da11d26cc1",
+   "name": "Explorers Wallan",
    "distance_km": 4.6,
    "places": 96,
    "occupancy_pct": 79,
    "counts": false,
-   "created_at": "2026-09-10T01:14:08.064Z",
-   "updated_at": "2026-10-26T01:14:08.064Z"
+   "created_at": "2026-09-10T01:42:40.586Z",
+   "updated_at": "2026-10-26T01:42:40.586Z"
   },
   {
-   "id": "near0000-0044-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0037-0000-0000-000000000000",
-   "explorers_project_id": "proj0000-0003-0000-0000-000000000000",
-   "name": "Explorers Tarneit West",
+   "id": "near0000-0041-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0034-0000-0000-000000000000",
+   "explorers_project_id": "e06cdbb4-1522-50d9-9f5f-bd40bf3168bc",
+   "name": "Explorers Tarneit",
    "distance_km": 4.9,
    "places": 104,
    "occupancy_pct": 86,
    "counts": false,
-   "created_at": "2026-06-30T01:14:08.065Z",
-   "updated_at": "2026-10-22T01:14:08.065Z"
+   "created_at": "2026-06-30T01:42:40.586Z",
+   "updated_at": "2026-10-22T01:42:40.586Z"
   }
  ],
  "explorers_centre_data": [
   {
-   "id": "proj0000-0001-0000-0000-000000000000",
+   "id": "baa80af0-8727-5b84-9e57-4605857fda15",
    "current_fee": 186,
    "current_ratio": 2.9,
    "current_occupancy_pct": 88,
    "current_nqs_rating": "Exceeding"
   },
   {
-   "id": "proj0000-0002-0000-0000-000000000000",
+   "id": "c751ae2a-07ca-5499-a499-77da11d26cc1",
    "current_fee": 182,
    "current_ratio": 2.4,
    "current_occupancy_pct": 79,
    "current_nqs_rating": "Meeting"
   },
   {
-   "id": "proj0000-0003-0000-0000-000000000000",
+   "id": "e06cdbb4-1522-50d9-9f5f-bd40bf3168bc",
    "current_fee": 184,
    "current_ratio": 2.6,
    "current_occupancy_pct": 86,
@@ -1353,27 +1584,27 @@
  ],
  "feasibility_comments": [
   {
-   "id": "cmnt0000-0018-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0004-0000-0000-000000000000",
+   "id": "cmnt0000-0015-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0001-0000-0000-000000000000",
    "author": "JK",
    "comment": "Step 3 CALD factor looks generous for this catchment — revisit once place-of-birth refreshed.",
    "section": "demand",
-   "created_at": "2026-10-20T01:14:08.064Z",
-   "updated_at": "2026-10-20T01:14:08.064Z"
+   "created_at": "2026-10-20T01:42:40.586Z",
+   "updated_at": "2026-10-20T01:42:40.586Z"
   },
   {
-   "id": "cmnt0000-0030-0000-0000-000000000000",
-   "feasibility_id": "feas0000-0019-0000-0000-000000000000",
+   "id": "cmnt0000-0027-0000-0000-000000000000",
+   "feasibility_id": "feas0000-0016-0000-0000-000000000000",
    "author": "SM",
    "comment": "Added 2 competitors from ACECQA refresh.",
    "section": null,
-   "created_at": "2026-10-28T01:14:08.065Z",
-   "updated_at": "2026-10-28T01:14:08.065Z"
+   "created_at": "2026-10-28T01:42:40.586Z",
+   "updated_at": "2026-10-28T01:42:40.586Z"
   }
  ],
  "lookups": [
   {
-   "id": "look0000-0053-0000-0000-000000000000",
+   "id": "look0000-0050-0000-0000-000000000000",
    "category": "feasibility_status",
    "value": "reviewing",
    "label": "Reviewing",
@@ -1381,7 +1612,7 @@
    "active": true
   },
   {
-   "id": "look0000-0054-0000-0000-000000000000",
+   "id": "look0000-0051-0000-0000-000000000000",
    "category": "feasibility_status",
    "value": "conditional_go",
    "label": "Conditional go",
@@ -1389,7 +1620,7 @@
    "active": true
   },
   {
-   "id": "look0000-0055-0000-0000-000000000000",
+   "id": "look0000-0052-0000-0000-000000000000",
    "category": "feasibility_status",
    "value": "go",
    "label": "Go",
@@ -1397,7 +1628,7 @@
    "active": true
   },
   {
-   "id": "look0000-0056-0000-0000-000000000000",
+   "id": "look0000-0053-0000-0000-000000000000",
    "category": "feasibility_status",
    "value": "rejected",
    "label": "No-go",
@@ -1405,7 +1636,7 @@
    "active": true
   },
   {
-   "id": "look0000-0057-0000-0000-000000000000",
+   "id": "look0000-0054-0000-0000-000000000000",
    "category": "competitor_stage",
    "value": "rumoured",
    "label": "Rumoured",
@@ -1413,7 +1644,7 @@
    "active": true
   },
   {
-   "id": "look0000-0058-0000-0000-000000000000",
+   "id": "look0000-0055-0000-0000-000000000000",
    "category": "competitor_stage",
    "value": "land_zoned",
    "label": "Land zoned",
@@ -1421,7 +1652,7 @@
    "active": true
   },
   {
-   "id": "look0000-0059-0000-0000-000000000000",
+   "id": "look0000-0056-0000-0000-000000000000",
    "category": "competitor_stage",
    "value": "da_lodged",
    "label": "DA lodged",
@@ -1429,7 +1660,7 @@
    "active": true
   },
   {
-   "id": "look0000-0060-0000-0000-000000000000",
+   "id": "look0000-0057-0000-0000-000000000000",
    "category": "competitor_stage",
    "value": "for_sale",
    "label": "For sale (childcare use)",
@@ -1437,7 +1668,7 @@
    "active": true
   },
   {
-   "id": "look0000-0061-0000-0000-000000000000",
+   "id": "look0000-0058-0000-0000-000000000000",
    "category": "competitor_stage",
    "value": "under_construction",
    "label": "Under construction",
@@ -1445,7 +1676,7 @@
    "active": true
   },
   {
-   "id": "look0000-0062-0000-0000-000000000000",
+   "id": "look0000-0059-0000-0000-000000000000",
    "category": "competitor_confidence",
    "value": "high",
    "label": "High",
@@ -1453,7 +1684,7 @@
    "active": true
   },
   {
-   "id": "look0000-0063-0000-0000-000000000000",
+   "id": "look0000-0060-0000-0000-000000000000",
    "category": "competitor_confidence",
    "value": "medium",
    "label": "Medium",
@@ -1461,7 +1692,7 @@
    "active": true
   },
   {
-   "id": "look0000-0064-0000-0000-000000000000",
+   "id": "look0000-0061-0000-0000-000000000000",
    "category": "competitor_confidence",
    "value": "low",
    "label": "Low",
@@ -1469,7 +1700,7 @@
    "active": true
   },
   {
-   "id": "look0000-0065-0000-0000-000000000000",
+   "id": "look0000-0062-0000-0000-000000000000",
    "category": "site_type",
    "value": "Greenfield estate",
    "label": "Greenfield estate",
@@ -1477,7 +1708,7 @@
    "active": true
   },
   {
-   "id": "look0000-0066-0000-0000-000000000000",
+   "id": "look0000-0063-0000-0000-000000000000",
    "category": "site_type",
    "value": "Infill",
    "label": "Infill",
@@ -1485,7 +1716,7 @@
    "active": true
   },
   {
-   "id": "look0000-0067-0000-0000-000000000000",
+   "id": "look0000-0064-0000-0000-000000000000",
    "category": "site_type",
    "value": "Brownfield",
    "label": "Brownfield",
@@ -1493,7 +1724,7 @@
    "active": true
   },
   {
-   "id": "look0000-0068-0000-0000-000000000000",
+   "id": "look0000-0065-0000-0000-000000000000",
    "category": "site_type",
    "value": "Town centre",
    "label": "Town centre",

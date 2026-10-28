@@ -28,6 +28,7 @@
 //   adapter.newId()
 
 import { CONFIG } from '../config.js';
+import { EXPLORERS_CENTRES } from './reference.js';
 
 const COLLECTIONS = [
   'projects', 'feasibility_data', 'feasibility_competitors', 'feasibility_schools',
@@ -88,7 +89,7 @@ class BaseAdapter {
     const byFeas = c => this.list(c, { feasibility_id: id }).sort((a, b) => (a.sort_order || 0) - (b.sort_order || 0));
     // Nearby Explorers: name/occupancy come from projects + explorers_centre_data, not the link row.
     const nearby = byFeas('feasibility_nearby_explorers').map(n => {
-      const centre = this.get('projects', n.explorers_project_id) || {};
+      const centre = this.get('projects', n.explorers_project_id) || EXPLORERS_CENTRES.find(c => c.id === n.explorers_project_id) || {};
       const ecd = this.get('explorers_centre_data', n.explorers_project_id) || {};
       return { ...n, name: n.name || centre.name || '(centre)', occupancy_pct: n.occupancy_pct ?? ecd.current_occupancy_pct ?? null, places: n.places ?? centre.places ?? null };
     });

@@ -53,11 +53,11 @@ function site(o){
   return pid;
 }
 
-// Existing Explorers centres (type 'project' in the real DB)
-const craigieburn = id('proj'), kalkallo = id('proj'), tarneitW = id('proj');
-projects.push({ id: craigieburn, type: 'project', name: 'Explorers Craigieburn', code: 'EXP-CRB', active: true },
-              { id: kalkallo,    type: 'project', name: 'Explorers Kalkallo',    code: 'EXP-KAL', active: true },
-              { id: tarneitW,    type: 'project', name: 'Explorers Tarneit West', code: 'EXP-TRW', active: true });
+// Explorers centres from explorers.com.au (same ids as sql/26)
+const CENTRES = JSON.parse(fs.readFileSync(path.join(__dirname, 'explorers-centres.json'))).centres;
+CENTRES.forEach(c => projects.push({ id: c.id, type: 'centre', name: c.name, code: c.code, address: c.address, active: c.status === 'open', notes: c.url }));
+const byName = n => CENTRES.find(c => c.name === n).id;
+const craigieburn = byName('Explorers Greenvale'), kalkallo = byName('Explorers Wallan'), tarneitW = byName('Explorers Tarneit');
 
 // Benchmarks
 projects.push({ id: VIC, type: 'benchmark', name: 'Victoria (Benchmark)', code: 'BENCH-VIC', active: false },
@@ -87,7 +87,7 @@ site({
     { name: 'Hume Anglican Grammar', type: 'P-12', sector: 'independent', enrol: 1850, km: 2.4, address: 'Mt Ridley Rd, Mickleham' },
   ],
   estates: [{ name: 'Merrifield', suburb: 'Mickleham', rate: 38, pct: 70 }, { name: 'Annadale', suburb: 'Mickleham', rate: 22, pct: 100 }],
-  nearby: [{ id: craigieburn, name: 'Explorers Craigieburn', km: 2.8, places: 112, occ: 88 }, { id: kalkallo, name: 'Explorers Kalkallo', km: 4.6, places: 96, occ: 79, counts: false }],
+  nearby: [{ id: craigieburn, name: 'Explorers Greenvale', km: 2.8, places: 112, occ: 88 }, { id: kalkallo, name: 'Explorers Wallan', km: 4.6, places: 96, occ: 79, counts: false }],
   comments: [{ by: 'JK', text: 'Step 3 CALD factor looks generous for this catchment — revisit once place-of-birth refreshed.', section: 'demand', age: 8 }],
 });
 
@@ -135,7 +135,7 @@ site({
   ],
   schools: [{ name: 'Caroline Springs College', type: 'P-12', sector: 'public', enrol: 2400, km: 0.9 }, { name: 'Christ the Priest Primary', type: 'primary', sector: 'catholic', enrol: 480, km: 1.2 }],
   estates: [],
-  nearby: [{ id: tarneitW, name: 'Explorers Tarneit West', km: 4.9, places: 104, occ: 86, counts: false }],
+  nearby: [{ id: tarneitW, name: 'Explorers Tarneit', km: 4.9, places: 104, occ: 86, counts: false }],
 });
 
 site({

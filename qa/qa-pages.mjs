@@ -81,6 +81,35 @@ ok((await page.locator('#pots tr').count()) === 3, 'remove row');
 ok((await page.locator('#comps .pc button').count()) === 4, 'photo + button on every competitor row');
 ok((await page.locator('#schools .pc button').count()) === 2, 'photo + button on every school row');
 
+// ── Reference pickers: council → estates, centres, deal field ────────
+ok((await page.locator('#site_council option').count()) >= 79, 'council is a dropdown of VIC LGAs');
+ok((await page.locator('#site_council').inputValue()) === 'Hume', 'existing council preserved');
+ok((await page.locator('#estates [data-estate-pick]').first().locator('optgroup').count()) === 1, 'estate dropdown is scoped to the site council');
+await page.selectOption('#site_council', 'Whittlesea'); await page.waitForTimeout(200);
+ok((await page.locator('#estates [data-estate-pick]').first().locator('optgroup').getAttribute('label')) === 'Whittlesea', 'changing council re-scopes the estate list');
+await page.selectOption('#site_council', 'Hume'); await page.waitForTimeout(200);
+await page.click('[data-add="estate"]');
+const lastEst = page.locator('#estates tr').last();
+await lastEst.locator('[data-estate-pick]').selectOption({ label: 'Dunhelen (Greenvale) · 1.4 lots/mo' });
+await page.waitForFunction(() => window.__adapter.list('feasibility_estates').some(e => e.name === 'Dunhelen' && e.suburb === 'Greenvale' && e.monthly_rate === 1.4));
+ok(true, 'picking an estate fills suburb and lots/month');
+await lastEst.locator('[data-del]').click();
+ok((await page.locator('#nearby label').count()) >= 28, 'centres picker lists the 28 website centres');
+await page.fill('#centre-search', 'werribee');
+ok((await page.locator('#nearby label:visible').count()) <= 3, 'centre filter narrows the list');
+await page.fill('#centre-search', '');
+const werribee = page.locator('#nearby label', { hasText: 'Explorers Werribee' }).locator('input[type=checkbox]');
+await werribee.check(); await page.waitForTimeout(300);
+ok(await page.locator('#nearby label', { hasText: 'Explorers Werribee' }).locator('[data-nearby-km]').isVisible(), 'ticking a centre shows its distance field');
+await page.locator('#nearby label', { hasText: 'Explorers Werribee' }).locator('[data-nearby-km]').fill('3.2'); await page.locator('[data-nearby-km]').last().dispatchEvent('change');
+await page.waitForFunction(() => window.__adapter.list('feasibility_nearby_explorers').some(n => n.distance_km === 3.2));
+ok(true, 'distance saved');
+ok(!(await page.locator('#deal-rent').isVisible()) && (await page.locator('#deal-price').isVisible()), 'freehold shows asking price only');
+await page.click('[data-deal="leasehold"]'); await page.waitForTimeout(200);
+ok((await page.locator('#deal-rent').isVisible()) && !(await page.locator('#deal-price').isVisible()), 'leasehold shows asking rent only');
+await page.click('[data-deal="freehold"]');
+ok((await page.locator('text=Import from ACECQA').count()) === 0, 'ACECQA import removed');
+
 // ── Input page (create new) ─────────────────────────────────────────
 await page.goto(`${base}/new.html?mode=local`); await ready();
 await page.click('#btn-create');

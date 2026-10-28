@@ -5,6 +5,7 @@ import { boot, appbar, esc, $, $$, href, toast, ICON, qs, num, hydratePhotos } f
 import { statusOptions } from '../logic/status.js';
 import { fmtAud } from '../logic/metrics.js';
 import { CONFIG } from '../config.js';
+import { VIC_LGAS, EXPLORERS_CENTRES, estatesFor, matchLga } from '../data/reference.js';
 
 let adapter, feasId, created = false;
 
@@ -58,14 +59,20 @@ const schoolRow = s => `<tr data-row="${esc(s.id)}" data-coll="feasibility_schoo
   <td><input data-f="address" value="${esc(s.address || '')}"></td>
   <td>${pc(s.photo_paths, `data-photo="${esc(s.id)}" data-sub="schools/${esc(s.id)}"`)}</td>
   <td><button type="button" class="btn s icon" data-del="${esc(s.id)}" aria-label="Remove row">×</button></td></tr>`;
-const estateRow = e => `<tr data-row="${esc(e.id)}" data-coll="feasibility_estates">
-  <td><input data-f="name" value="${esc(e.name || '')}"></td>
+const estateRow = (e, council) => {
+  const opts = estatesFor(council);
+  const known = opts.some(o => o.name === e.name);
+  const grouped = {}; opts.forEach(o => (grouped[o.lga] = grouped[o.lga] || []).push(o));
+  const sel = `<select data-f="name" data-estate-pick><option value="">— pick estate —</option>${Object.entries(grouped).map(([lga, es]) => `<optgroup label="${esc(lga)}">${es.map(o => `<option value="${esc(o.name)}" data-suburb="${esc(o.suburb)}" data-rate="${o.rate}" ${o.name === e.name ? 'selected' : ''}>${esc(o.name)} (${esc(o.suburb)}) · ${o.rate} lots/mo</option>`).join('')}</optgroup>`).join('')}<option value="__other" ${!known && e.name ? 'selected' : ''}>Other…</option></select>`;
+  return `<tr data-row="${esc(e.id)}" data-coll="feasibility_estates">
+  <td style="min-width:220px">${sel}<input data-f="name" data-estate-other value="${esc(!known ? (e.name || '') : '')}" placeholder="Estate name" style="margin-top:4px;${known || !e.name ? 'display:none' : ''}"></td>
   <td><input data-f="suburb" value="${esc(e.suburb || '')}"></td>
   <td><input data-f="lots" class="mono" value="${esc(e.lots ?? '')}" inputmode="numeric" placeholder="legacy"></td>
   <td><input data-f="pct_in_catch" class="mono" value="${esc(e.pct_in_catch ?? '')}" inputmode="numeric"></td>
   <td><input data-f="monthly_rate" class="mono" value="${esc(e.monthly_rate ?? '')}" inputmode="numeric"></td>
   <td><span class="mono muted">0.42</span></td>
   <td><button type="button" class="btn s icon" data-del="${esc(e.id)}" aria-label="Remove row">×</button></td></tr>`;
+};
 
 function render(){
   const b = feasId ? adapter.feasibility(feasId) : null;
@@ -74,7 +81,9 @@ function render(){
   const lk = { stage: adapter.lookups('competitor_stage'), conf: adapter.lookups('competitor_confidence'), site: adapter.lookups('site_type') };
   const comps = b ? b.competitors.filter(c => c.status !== 'potential') : [];
   const pots = b ? b.competitors.filter(c => c.status === 'potential') : [];
-  const centres = adapter.list('projects', { type: 'project' });
+  const dbCentres = adapter.list('projects').filter(p => p.type === 'centre' || p.type === 'project');
+  const seen = new Set(dbCentres.map(c => c.id));
+  const centres = [...dbCentres.map(c => ({ ...c, status: c.active === false ? 'opening' : 'open' })), ...EXPLORERS_CENTRES.filter(c => !seen.has(c.id))].sort((a, c) => a.name.localeCompare(c.name));
   const ro = !adapter.canWrite();
   const done = { s1: !!(p.name && fd.site_address && fd.proposed_places), s2: !!(fd.price || feaso.lease_rent), s3: !!fd.gapmaps_5min, s4: comps.length > 0, s5: (b ? b.schools.length : 0) > 0, s6: (b ? b.estates.length : 0) > 0, s7: (b ? b.nearby.length : 0) > 0, s8: !!(fd.site_other_notes || (fd.photo_paths || []).length) };
 
@@ -97,14 +106,14 @@ function render(){
         <section class="card sec" id="s1"><h2><span class="n">1</span>Site</h2>
           <div class="grid-3">${field('name', 'Site name', p.name, { req: true })}${field('code', 'Code', p.code, { cls: 'mono', placeholder: 'auto' })}${field('status', 'Status', fd.status || 'reviewing', { req: true, input: 'select', options: statusOptions(adapter) })}</div>
           ${field('site_address', 'Address', fd.site_address, { req: true, placeholder: 'Street, suburb, state, postcode' })}
-          <div class="grid-4">${field('site_suburb', 'Suburb', fd.site_suburb)}${field('site_council', 'Council (LGA)', fd.site_council)}${field('site_state', 'State', fd.site_state || 'VIC', { input: 'select', options: ['VIC', 'NSW', 'QLD', 'SA', 'WA'].map(v => ({ value: v, label: v })) })}${field('site_type', 'Site type', fd.site_type, { input: 'select', options: [{ value: '', label: '—' }].concat(lk.site.map(o => ({ value: o.value, label: o.label }))) })}</div>
+          <div class="grid-4">${field('site_suburb', 'Suburb', fd.site_suburb)}${field('site_council', 'Council (LGA)', fd.site_council || '', { input: 'select', options: [{ value: '', label: '—' }].concat(fd.site_council && !VIC_LGAS.includes(fd.site_council) ? [{ value: fd.site_council, label: fd.site_council }] : [], VIC_LGAS.map(l => ({ value: l, label: l }))) })}${field('site_state', 'State', fd.site_state || 'VIC', { input: 'select', options: ['VIC', 'NSW', 'QLD', 'SA', 'WA'].map(v => ({ value: v, label: v })) })}${field('site_type', 'Site type', fd.site_type, { input: 'select', options: [{ value: '', label: '—' }].concat(lk.site.map(o => ({ value: o.value, label: o.label }))) })}</div>
           <div class="grid-4">${field('proposed_places', 'Proposed places', fd.proposed_places, { req: true, cls: 'mono' })}${field('land_size_sqm', 'Land size', fd.land_size_sqm, { cls: 'mono', unit: 'm²' })}${field('proposed_use', 'Proposed use', fd.proposed_use)}${field('agent', 'Agent', fd.agent)}</div>
         </section>
         <section class="card sec" id="s2"><h2><span class="n">2</span>Deal</h2><p class="hint">Price and lease terms are hidden from the view-only acquisitions role.</p>
           <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-end">
             <div class="f" style="flex:0 0 auto"><label>Deal type</label><div class="seg" id="deal-type">${[['freehold', 'Freehold'], ['leasehold', 'Leasehold'], ['fund_through', 'Fund-through']].map(([v, l]) => `<button type="button" data-deal="${v}" class="${(feaso.deal_type || 'freehold') === v ? 'on' : ''}">${l}</button>`).join('')}</div></div>
-            <div style="flex:1 1 180px">${field('price', 'Asking price', fd.price, { cls: 'mono', unit: fd.price && fd.proposed_places ? '$ · ' + fmtAud(Math.round(fd.price / fd.proposed_places)) + ' / place' : '$' })}</div>
-            <div style="flex:1 1 180px">${field('lease_rent', 'Lease rent (if leasehold)', feaso.lease_rent, { cls: 'mono', unit: '$ p.a. net', placeholder: '—' })}</div>
+            <div style="flex:1 1 180px" id="deal-price" ${(feaso.deal_type || 'freehold') === 'leasehold' ? 'hidden' : ''}>${field('price', 'Asking price', fd.price, { cls: 'mono', unit: fd.price && fd.proposed_places ? '$ · ' + fmtAud(Math.round(fd.price / fd.proposed_places)) + ' / place' : '$' })}</div>
+            <div style="flex:1 1 180px" id="deal-rent" ${(feaso.deal_type || 'freehold') === 'leasehold' ? '' : 'hidden'}>${field('lease_rent', 'Asking rent', feaso.lease_rent, { cls: 'mono', unit: '$ p.a. net', placeholder: '—' })}</div>
             <div style="flex:1 1 180px">${field('target_settlement', 'Target settlement', feaso.target_settlement, { type: 'date', cls: 'mono' })}</div>
           </div>
         </section>
@@ -121,7 +130,7 @@ function render(){
         <section class="card sec" id="s4"><h2><span class="n">4</span>Competitors</h2><p class="hint">Live centres and pipeline permits in the catchment. Photos: click + on a row — they attach to that row's photo set, not the site's.</p>
           <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Centre</th><th>Operator</th><th>Status</th><th>Places</th><th>Dist. km</th><th>Fee / day</th><th>Occ. %</th><th>Risk %</th><th>Photos</th><th></th></tr></thead>
             <tbody id="comps">${comps.map(c => compRow(c, false, lk)).join('')}</tbody></table></div>
-          <div style="display:flex;gap:10px"><button type="button" class="add" data-add="competitor">+ Add competitor</button><button type="button" class="add solid" disabled title="Not in this pass">Import from ACECQA</button></div>
+          <button type="button" class="add" data-add="competitor">+ Add competitor</button>
           <div style="border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:12px">
             <div><h3>Potential competitors</h3><p class="hint" style="margin-top:4px">Sites that could become centres but have no permit yet. Tick <strong>Count</strong> to include the risk-weighted places in the pipeline step of the demand chain; otherwise they show in the report as a watch item only.</p></div>
             <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / description</th><th>Stage</th><th>Est. places</th><th>Dist. km</th><th>Source</th><th>Confidence</th><th>Risk %</th><th>Count</th><th>Photos</th><th></th></tr></thead>
@@ -133,12 +142,13 @@ function render(){
           <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:26%">School</th><th>Type</th><th>Sector</th><th>Enrolments</th><th>Dist. km</th><th>Address</th><th>Photos</th><th></th></tr></thead><tbody id="schools">${(b ? b.schools : []).map(schoolRow).join('')}</tbody></table></div>
           <button type="button" class="add" data-add="school">+ Add school</button>
         </section>
-        <section class="card sec" id="s6"><h2><span class="n">6</span>Housing estates (growth)</h2><p class="hint">Drives the estate-growth step of the demand chain: lots/month × % in catchment, projected 54 months at 0.42 children per lot.</p>
-          <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:26%">Estate</th><th>Suburb</th><th>Total lots</th><th>% in catchment</th><th>Lots / month</th><th>Children / lot</th><th></th></tr></thead><tbody id="estates">${(b ? b.estates : []).map(estateRow).join('')}</tbody></table></div>
+        <section class="card sec" id="s6"><h2><span class="n">6</span>Housing estates (growth)</h2><p class="hint">Drives the estate-growth step of the demand chain: lots/month × % in catchment, projected 54 months at 0.42 children per lot. The estate list follows the council chosen in section 1 (RPM data); pick <em>Other…</em> to type one.</p>
+          <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:26%">Estate</th><th>Suburb</th><th>Total lots</th><th>% in catchment</th><th>Lots / month</th><th>Children / lot</th><th></th></tr></thead><tbody id="estates">${(b ? b.estates : []).map(e => estateRow(e, fd.site_council)).join('')}</tbody></table></div>
           <button type="button" class="add" data-add="estate">+ Add estate</button>
         </section>
-        <section class="card sec" id="s7"><h2><span class="n">7</span>Nearby Explorers centres</h2><p class="hint">Tick the centres that count for the cannibalisation check.</p>
-          <div class="grid-3" id="nearby">${centres.map(c => { const n = b ? b.nearby.find(x => x.explorers_project_id === c.id) : null; const ecd = adapter.get('explorers_centre_data', c.id) || {}; return `<label class="nearby"><input type="checkbox" data-nearby="${esc(c.id)}" ${n ? 'checked' : ''}><span><span style="font-weight:600">${esc(c.name)}</span><br><span class="mono" style="font-size:12.5px;color:var(--ink-3)">${n ? esc(n.distance_km) + ' km · ' : ''}${ecd.current_occupancy_pct != null ? esc(ecd.current_occupancy_pct) + '% occ.' : ''}</span></span></label>`; }).join('')}</div>
+        <section class="card sec" id="s7"><h2><span class="n">7</span>Nearby Explorers centres</h2><p class="hint">Tick the centres within reach of this site and enter the distance; ticked centres feed the cannibalisation check. List: the 28 centres on explorers.com.au plus any centres in the database.</p>
+          <input id="centre-search" placeholder="Filter by suburb or name…" style="max-width:320px;border:1px solid var(--rule-2);border-radius:var(--r);padding:9px 11px;font:inherit;background:#fff">
+          <div class="grid-3" id="nearby">${centres.map(c => { const n = b ? b.nearby.find(x => x.explorers_project_id === c.id) : null; const ecd = adapter.get('explorers_centre_data', c.id) || {}; return `<label class="nearby" data-centre="${esc((c.name + ' ' + (c.address || '') + ' ' + (c.suburb || '')).toLowerCase())}" style="${n ? 'border-color:var(--moss);background:var(--sage)' : ''}"><input type="checkbox" data-nearby="${esc(c.id)}" ${n ? 'checked' : ''}><span style="flex:1;min-width:0"><span style="font-weight:600">${esc(c.name)}</span>${c.status === 'opening' ? ' <span class="chip reviewing" style="font-size:10.5px;padding:1px 7px"><i></i>opening</span>' : ''}<br><span style="font-size:12px;color:var(--ink-3)">${esc(c.address || '')}${ecd.current_occupancy_pct != null ? ' · ' + esc(ecd.current_occupancy_pct) + '% occ.' : ''}</span></span>${n ? `<span class="f" style="flex:0 0 76px"><input data-nearby-km="${esc(n.id)}" class="mono" value="${esc(n.distance_km ?? '')}" placeholder="km" inputmode="decimal" style="padding:6px 8px;min-height:32px" aria-label="Distance km"></span>` : ''}</label>`; }).join('')}</div>
         </section>
         <section class="card sec" id="s8"><h2><span class="n">8</span>Files &amp; notes</h2>
           <div class="grid-2">
@@ -206,16 +216,35 @@ async function addRow(kind){
 
 function wire(){
   $$('#form [data-field]').forEach(el => el.addEventListener('change', () => saveField(el)));
-  $$('#form tr[data-row]').forEach(tr => $$('[data-f]', tr).forEach(inp => inp.addEventListener('change', () => saveRowField(tr, inp))));
+  $$('#form tr[data-row]').forEach(tr => $$('[data-f]', tr).forEach(inp => { if (inp.hasAttribute('data-estate-pick')) return; inp.addEventListener('change', () => saveRowField(tr, inp)); }));
   $$('[data-add]').forEach(b => b.addEventListener('click', () => addRow(b.dataset.add)));
   $$('[data-del]').forEach(b => b.addEventListener('click', async () => { const tr = b.closest('tr'); const res = await adapter.remove(tr.dataset.coll, tr.dataset.row); if (res.ok){ tr.remove(); toast('Row removed'); } else toast(res.reason, 'err'); }));
-  $$('#deal-type [data-deal]').forEach(b => b.addEventListener('click', async () => { if (!(await ensureCreated())) return; const fd = adapter.get('feasibility_data', feasId); if (!fd){ toast('Site record missing — reload the page', 'err'); return; } const fi = { ...(fd.feasibility_inputs || {}) }; fi.feaso = { ...(fi.feaso || {}), deal_type: b.dataset.deal }; const res = await adapter.patch('feasibility_data', feasId, { feasibility_inputs: fi }); if (res.ok){ $$('#deal-type button').forEach(x => x.classList.toggle('on', x === b)); } else toast(res.reason, 'err'); }));
+  $$('#deal-type [data-deal]').forEach(b => b.addEventListener('click', async () => { if (!(await ensureCreated())) return; const fd = adapter.get('feasibility_data', feasId); if (!fd){ toast('Site record missing — reload the page', 'err'); return; } const fi = { ...(fd.feasibility_inputs || {}) }; fi.feaso = { ...(fi.feaso || {}), deal_type: b.dataset.deal }; const res = await adapter.patch('feasibility_data', feasId, { feasibility_inputs: fi }); if (res.ok){ $$('#deal-type button').forEach(x => x.classList.toggle('on', x === b)); $('#deal-price').hidden = b.dataset.deal === 'leasehold'; $('#deal-rent').hidden = b.dataset.deal !== 'leasehold'; } else toast(res.reason, 'err'); }));
   $$('[data-nearby]').forEach(cb => cb.addEventListener('change', async () => {
     if (!(await ensureCreated())) return;
     const existing = adapter.list('feasibility_nearby_explorers', { feasibility_id: feasId }).find(n => n.explorers_project_id === cb.dataset.nearby);
-    if (cb.checked && !existing){ const c = adapter.get('projects', cb.dataset.nearby); await adapter.upsert('feasibility_nearby_explorers', { id: adapter.newId(), feasibility_id: feasId, explorers_project_id: c.id, name: c.name, counts: true }); }
+    if (cb.checked && !existing){
+      const c = adapter.get('projects', cb.dataset.nearby) || EXPLORERS_CENTRES.find(x => x.id === cb.dataset.nearby);
+      const res = await adapter.upsert('feasibility_nearby_explorers', { id: adapter.newId(), feasibility_id: feasId, explorers_project_id: c.id, name: c.name, counts: true });
+      if (!res.ok){ cb.checked = false; toast(/foreign key|violates/i.test(res.reason) ? 'Centre not in the database yet — run sql/26-explorers-centres.sql' : res.reason, 'err'); return; }
+    }
     if (!cb.checked && existing) await adapter.remove('feasibility_nearby_explorers', existing.id);
+    render(); $('#s7').scrollIntoView({ block: 'center' });
   }));
+  $$('[data-nearby-km]').forEach(inp => inp.addEventListener('change', async () => { const res = await adapter.patch('feasibility_nearby_explorers', inp.dataset.nearbyKm, { distance_km: num(inp.value) }); if (!res.ok) toast(res.reason, 'err'); }));
+  const cs = $('#centre-search'); if (cs) cs.addEventListener('input', () => { const q = cs.value.toLowerCase().trim(); $$('#nearby [data-centre]').forEach(l => { l.style.display = !q || l.dataset.centre.includes(q) || l.querySelector('input').checked ? '' : 'none'; }); });
+  // estate dropdown: picking fills suburb + lots/month; "Other…" reveals free text
+  $$('[data-estate-pick]').forEach(sel => sel.addEventListener('change', async () => {
+    const tr = sel.closest('tr'), other = tr.querySelector('[data-estate-other]');
+    if (sel.value === '__other'){ other.style.display = ''; other.focus(); return; }
+    other.style.display = 'none';
+    const o = sel.selectedOptions[0]; const fields = { name: sel.value || null };
+    if (o && o.dataset.suburb){ fields.suburb = o.dataset.suburb; tr.querySelector('[data-f="suburb"]').value = o.dataset.suburb; }
+    if (o && o.dataset.rate){ fields.monthly_rate = Number(o.dataset.rate); tr.querySelector('[data-f="monthly_rate"]').value = o.dataset.rate; }
+    const res = await adapter.patch(tr.dataset.coll, tr.dataset.row, fields); if (!res.ok) toast(res.reason, 'err');
+  }));
+  // council change re-renders so the estate dropdown follows it
+  const council = $('#site_council'); if (council) council.addEventListener('change', () => setTimeout(render, 50));
   // GapMaps drop / paste (JSON in this pass; CSV parser is ported next)
   $$('[data-gm]').forEach(zone => {
     const load = async text => {
