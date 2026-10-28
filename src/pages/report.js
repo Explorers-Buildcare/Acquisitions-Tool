@@ -2,7 +2,7 @@
 // slide rail on the left, pre-flight / freshness / versions on the right.
 // Slide hides write report_config.hidden_slides — the same key the old tool
 // reads — so the two tools agree on what's in the deck.
-import { boot, appbar, esc, $, $$, href, toast, ICON, statusChip, qs } from '../ui/shell.js';
+import { boot, appbar, esc, $, $$, href, toast, ICON, statusChip, qs, openLightbox } from '../ui/shell.js';
 import { computeFeasibilityMetrics, fmtRatio, fmtN } from '../logic/metrics.js';
 import { runPreflight } from '../logic/preflight.js';
 import { statusLabel, relativeTime } from '../logic/status.js';
@@ -11,17 +11,17 @@ import { renderLegacyReport } from '../report/legacy-report.js';
 let adapter, id, photos = { paths: [], urlFor: () => '' };
 
 // Globals the legacy slide HTML calls from inline onclick handlers.
-globalThis._openPhotoLightbox = (url, title) => {
-  let lb = $('#lightbox');
-  if (!lb){ lb = document.createElement('div'); lb.id = 'lightbox'; lb.style.cssText = 'position:fixed;inset:0;background:rgba(43,36,30,.85);display:flex;align-items:center;justify-content:center;z-index:99;cursor:zoom-out;padding:24px'; lb.addEventListener('click', () => lb.remove()); document.body.appendChild(lb); }
-  lb.innerHTML = `<figure style="margin:0;max-width:100%;max-height:100%;display:flex;flex-direction:column;align-items:center;gap:10px"><img src="${esc(url)}" alt="${esc(title)}" style="max-width:100%;max-height:85vh;border-radius:8px;background:#fff"><figcaption style="color:#FBF8EF;font-size:13px">${esc(title)}</figcaption></figure>`;
-};
+// A click on any photo link opens the gallery with every photo on that slide.
+globalThis._openPhotoLightbox = (url, title) => openLightbox([{ url, title }], 0);
 globalThis._onPhotoLinkClick = (ev, el) => {
   if (ev && (ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.button === 1)) return true;
   if (ev) ev.preventDefault();
   const a = el || (ev && ev.currentTarget);
   if (!a || !a.href || a.href.endsWith('#')) return false;
-  globalThis._openPhotoLightbox(a.href, a.title || '');
+  const slide = a.closest('.rpt-slide, .rpt-cover') || document;
+  const links = Array.from(slide.querySelectorAll('a.rpt-photo-link')).filter(l => l.href && !l.href.endsWith('#'));
+  const items = links.map(l => ({ url: l.href, title: l.title || '' }));
+  openLightbox(items, Math.max(0, links.indexOf(a)));
   return false;
 };
 

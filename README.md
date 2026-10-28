@@ -34,8 +34,6 @@ src/logic/preflight.js report checks (May 2026 review rules)
 src/logic/status.js   status canonicalisation, labels, relative time
 src/ui/shell.js       app bar, helpers, toast, boot
 src/pages/*.js        one module per page
-src/report/legacy-report.js  the old 14-slide deck renderer, ported verbatim
-css/report.css        its stylesheet (rpt-*), copied from the old tool
 data/make-seed.js     regenerates data/seed.json (node data/make-seed.js)
 sql/25-acquisitions-v2.sql   additive migration (potential competitors)
 qa/                   harnesses
@@ -71,7 +69,7 @@ Both print `{passed, failed, errors}` and exit non-zero on failure. `qa-metrics`
 
 - OpCo / PropCo editor — port `acq-feaso.js` into the Financials tab
 - GapMaps **CSV** parser (JSON drop/paste works) — port `parseGapMapsCsv`
-- PDF export is the browser's print dialog for now (server-side render later); "Present" full-screen mode and the Customise editor (slide variants / custom slides) are not yet ported, though existing report_config customisations are honoured
+- The 9 generated slides beyond cover / exec / demand / comp / bench / growth / schools / risks are placeholders; PDF export is `window.print()` for now (server-side render later)
 - Sign-in screen + Microsoft SSO
 - Map view — needs `lat`/`lng` (commented in the migration) and a geocoding step
 - "Rewrite with Claude" — wire to the existing `claude-rewrite-slide` edge function

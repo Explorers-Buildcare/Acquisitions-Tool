@@ -135,3 +135,43 @@ export async function hydratePhotos(adapter, feasId){
     el.title = el.dataset.photoPath;
   });
 }
+
+// ── Gallery lightbox ──────────────────────────────────────────────────────
+// openLightbox([{url,title}], index) — one overlay, ‹ › arrows, counter,
+// arrow keys, swipe, Esc / click-outside to close.
+let _lb = null;
+export function openLightbox(items, index = 0){
+  items = (items || []).filter(i => i && i.url); if (!items.length) return;
+  closeLightbox();
+  let i = Math.max(0, Math.min(index, items.length - 1));
+  const lb = document.createElement('div'); lb.id = 'lightbox'; lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', 'Photo viewer');
+  lb.style.cssText = 'position:fixed;inset:0;background:rgba(43,36,30,.88);z-index:99;display:flex;align-items:center;justify-content:center;padding:24px;user-select:none';
+  const nav = (side) => `<button data-nav="${side}" aria-label="${side === 'prev' ? 'Previous' : 'Next'} photo" style="position:absolute;top:50%;${side === 'prev' ? 'left:16px' : 'right:16px'};transform:translateY(-50%);width:48px;height:48px;border-radius:50%;border:0;background:rgba(251,248,239,.14);color:#FBF8EF;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center">${side === 'prev' ? '‹' : '›'}</button>`;
+  lb.innerHTML = `${items.length > 1 ? nav('prev') + nav('next') : ''}
+    <button data-close aria-label="Close" style="position:absolute;top:14px;right:16px;width:40px;height:40px;border-radius:50%;border:0;background:rgba(251,248,239,.14);color:#FBF8EF;font-size:22px;cursor:pointer">×</button>
+    <figure style="margin:0;max-width:92vw;max-height:92vh;display:flex;flex-direction:column;align-items:center;gap:10px"><img style="max-width:92vw;max-height:82vh;border-radius:8px;background:#fff;object-fit:contain"><figcaption style="color:#FBF8EF;font-size:13px;display:flex;gap:14px;align-items:center"><span class="mono" data-count></span><span data-title></span></figcaption></figure>`;
+  const img = lb.querySelector('img'), title = lb.querySelector('[data-title]'), count = lb.querySelector('[data-count]');
+  const show = () => { const it = items[i]; img.src = it.url; img.alt = it.title || ''; title.textContent = it.title || ''; count.textContent = items.length > 1 ? `${i + 1} / ${items.length}` : ''; };
+  const step = d => { i = (i + d + items.length) % items.length; show(); };
+  lb.addEventListener('click', e => { const n = e.target.closest('[data-nav]'); if (n){ step(n.dataset.nav === 'prev' ? -1 : 1); return; } if (e.target.closest('[data-close]') || e.target === lb) closeLightbox(); });
+  const onKey = e => { if (e.key === 'Escape') closeLightbox(); else if (e.key === 'ArrowLeft') step(-1); else if (e.key === 'ArrowRight') step(1); };
+  let tx = null; lb.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true }); lb.addEventListener('touchend', e => { if (tx == null) return; const dx = e.changedTouches[0].clientX - tx; if (Math.abs(dx) > 40) step(dx < 0 ? 1 : -1); tx = null; });
+  document.addEventListener('keydown', onKey);
+  _lb = { el: lb, onKey }; document.body.appendChild(lb); show();
+  [items[(i + 1) % items.length], items[(i - 1 + items.length) % items.length]].forEach(it => { const pre = new Image(); pre.src = it.url; });
+}
+export function closeLightbox(){ if (!_lb) return; document.removeEventListener('keydown', _lb.onKey); _lb.el.remove(); _lb = null; }
+
+// Thumbnails: any [data-photo-path] element (hydrated by hydratePhotos) opens
+// the lightbox on click, grouped with its siblings inside the nearest
+// [data-photo-group] (else its parent element). Delegated once per page.
+const _thumbUrl = el => el.tagName === 'IMG' ? el.src : (el.style.backgroundImage || '').replace(/^url\(["']?|["']?\)$/g, '');
+document.addEventListener('click', e => {
+  const el = e.target.closest && e.target.closest('[data-photo-path]'); if (!el) return;
+  const url = _thumbUrl(el); if (!url) return;
+  e.preventDefault();
+  const group = el.closest('[data-photo-group]') || el.parentElement;
+  const sibs = Array.from(group.querySelectorAll('[data-photo-path]'));
+  const items = sibs.map(s => ({ url: _thumbUrl(s), title: s.dataset.photoTitle || s.title || s.dataset.photoPath })).filter(x => x.url);
+  openLightbox(items, Math.max(0, items.findIndex(x => x.url === url)));
+});

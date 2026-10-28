@@ -107,6 +107,18 @@ await page.locator('[data-hide="nearby_anchors"]').check();
 await page.waitForFunction(() => document.querySelectorAll('#deck .rpt-slide').length === 13);
 ok(true, 'un-hiding restores the slide');
 
+// ── Gallery lightbox (shared) ───────────────────────────────────────
+await page.evaluate(async () => { const m = await import('/src/ui/shell.js'); const px = 'data:image/gif;base64,R0lGODlhAQABAAAAACw='; m.openLightbox([{ url: px + '#1', title: 'one' }, { url: px + '#2', title: 'two' }, { url: px + '#3', title: 'three' }], 0); });
+ok((await page.locator('#lightbox [data-count]').textContent()) === '1 / 3', 'lightbox opens on first of group');
+await page.keyboard.press('ArrowRight');
+ok((await page.locator('#lightbox [data-count]').textContent()) === '2 / 3' && (await page.locator('#lightbox [data-title]').textContent()) === 'two', 'arrow key moves to next photo');
+await page.click('#lightbox [data-nav="prev"]');
+ok((await page.locator('#lightbox [data-count]').textContent()) === '1 / 3', 'prev button moves back');
+await page.keyboard.press('ArrowLeft');
+ok((await page.locator('#lightbox [data-count]').textContent()) === '3 / 3', 'wraps around');
+await page.keyboard.press('Escape');
+ok((await page.locator('#lightbox').count()) === 0, 'Esc closes');
+
 // ── Phone ───────────────────────────────────────────────────────────
 await page.setViewportSize({ width: 390, height: 844 });
 await page.goto(`${base}/m/index.html?id=${mickId}&mode=local`); await ready();

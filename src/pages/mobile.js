@@ -28,7 +28,7 @@ function render(){
       <label class="shoot" for="cam">${ICON.camera} Take photo<input id="cam" type="file" accept="image/*" capture="environment" multiple class="sr"></label>
       <div class="tags" role="group" aria-label="Tag photo to">${tags.map((t, i) => `<button data-tag="${i}" class="${(t.id || null) === tag.id && t.coll === tag.coll ? 'on' : ''}">${esc(t.label)}</button>`).join('')}</div>
       <section class="card tight"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h2 style="font-size:14px">Photos · ${photos.length}</h2></div>
-        <div class="grid">${photos.slice(0, 12).map(x => `<div class="ph" data-photo-path="${esc(x.p)}">${x.label ? `<span>${esc(x.label.split(' ')[0])}</span>` : ''}</div>`).join('') || '<div class="muted" style="grid-column:1/-1">No photos yet.</div>'}</div>
+        <div class="grid" data-photo-group>${photos.slice(0, 12).map(x => `<div class="ph" data-photo-path="${esc(x.p)}">${x.label ? `<span>${esc(x.label.split(' ')[0])}</span>` : ''}</div>`).join('') || '<div class="muted" style="grid-column:1/-1">No photos yet.</div>'}</div>
         <div class="muted" style="margin-top:10px;font-size:12.5px">Untagged photos go to the site's Files; tagged ones attach to that competitor or school.</div></section>
       <section class="card tight"><h2 style="font-size:14px;margin-bottom:10px">Notes</h2>
         ${notes.map(n => `<div class="note"><span class="t mono">${relativeTime(n.created_at)}</span><br>${esc(n.comment)}</div>`).join('')}

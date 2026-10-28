@@ -20,7 +20,7 @@ const field = (id, label, value, { type = 'text', req = false, unit = '', placeh
 function pc(paths, onAddAttr){
   const thumbs = (paths || []).slice(0, 2).map(pp => `<span data-photo-path="${esc(pp)}" style="background-size:cover;background-position:center"></span>`).join('');
   const more = (paths || []).length > 2 ? `<span class="more">+${paths.length - 2}</span>` : '';
-  return `<div class="pc">${thumbs}${more}<button type="button" ${onAddAttr} aria-label="Add photo">+</button></div>`;
+  return `<div class="pc" data-photo-group>${thumbs}${more}<button type="button" ${onAddAttr} aria-label="Add photo">+</button></div>`;
 }
 
 function compRow(c, potential, lk){
