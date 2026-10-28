@@ -1,0 +1,15 @@
+name: QA
+on: [push, pull_request]
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Metrics + adapter checks
+        run: node qa/qa-metrics.mjs
+      - name: Browser checks
+        run: |
+          cd qa && npm install --silent && npx playwright install --with-deps chromium && cd ..
+          node qa/qa-pages.mjs
