@@ -114,8 +114,6 @@ function render(){
             <div class="f"><label>GapMaps · 10-minute catchment</label><div class="drop ${fd.gapmaps_10min ? 'has' : ''}" data-gm="gapmaps_10min">${fd.gapmaps_10min ? `<b>Loaded</b> · ${esc(fd.gapmaps_10min.ldc?.children_05 ?? '?')} children 0–5 · ${esc(fd.gapmaps_10min.ldc?.places ?? '?')} places` : 'Drop export or <b>paste JSON</b><br><span style="font-size:12px">Optional — used for the three-tier comparison</span>'}</div></div>
           </div>
           <div class="grid-4">
-            <div class="f"><label>Participation rate</label><input class="mono" value="1.00" disabled><span class="u">placeholder — unvalidated</span></div>
-            <div class="f"><label>CALD adjustment</label><input class="mono" value="${fd.gapmaps_5min ? 'computed' : '—'}" disabled><span class="u">from place-of-birth, capped 0.7–1.0</span></div>
             ${field('target_fee', 'Target fee / day', feaso.target_fee ?? CONFIG.explorersTargetFee, { cls: 'mono', unit: '$' })}
             <div class="f"><label>SEIFA</label><input class="mono" value="${esc(fd.gapmaps_5min?.seifa ?? '—')}" disabled><span class="u">from GapMaps</span></div>
           </div>
@@ -161,7 +159,8 @@ async function ensureCreated(){
   const name = $('#name').value.trim() || 'Untitled feasibility';
   const res = await adapter.upsert('projects', { id, type: 'feasibility', name, code: $('#code').value.trim() || null, active: true });
   if (!res.ok){ toast(res.reason, 'err'); return null; }
-  await adapter.upsert('feasibility_data', { id, status: $('#status').value || 'reviewing', prepared_by: adapter.user.initials, feasibility_inputs: { feaso: { deal_type: 'freehold', target_fee: CONFIG.explorersTargetFee } }, report_config: {}, photo_paths: [] });
+  const res2 = await adapter.upsert('feasibility_data', { id, status: $('#status').value || 'reviewing', prepared_by: adapter.user.initials, site_state: 'VIC', feasibility_inputs: { feaso: { deal_type: 'freehold', target_fee: CONFIG.explorersTargetFee } }, report_config: {} });
+  if (!res2.ok){ toast('Could not create the site record: ' + res2.reason, 'err'); await adapter.remove('projects', id); return null; }
   feasId = id; created = true;
   history.replaceState(null, '', href('new.html', { id }));
   return id;
@@ -178,7 +177,7 @@ async function saveField(input){
   input.classList.add('unsaved');
   let res;
   if (PROJECT_FIELDS.has(f)) res = await adapter.patch('projects', feasId, { [f]: v || null });
-  else if (FEASO_FIELDS.has(f)){ const fd = adapter.get('feasibility_data', feasId); const fi = { ...(fd.feasibility_inputs || {}) }; fi.feaso = { ...(fi.feaso || {}), [f]: v || null }; res = await adapter.patch('feasibility_data', feasId, { feasibility_inputs: fi }); }
+  else if (FEASO_FIELDS.has(f)){ const fd = adapter.get('feasibility_data', feasId) || {}; const fi = { ...(fd.feasibility_inputs || {}) }; fi.feaso = { ...(fi.feaso || {}), [f]: v || null }; res = await adapter.patch('feasibility_data', feasId, { feasibility_inputs: fi }); }
   else res = await adapter.patch('feasibility_data', feasId, { [f]: v === '' ? null : v });
   if (res.ok){ input.classList.remove('unsaved', 'err'); } else { input.classList.add('err'); toast(res.reason || 'Not saved', 'err'); }
 }
@@ -210,7 +209,7 @@ function wire(){
   $$('#form tr[data-row]').forEach(tr => $$('[data-f]', tr).forEach(inp => inp.addEventListener('change', () => saveRowField(tr, inp))));
   $$('[data-add]').forEach(b => b.addEventListener('click', () => addRow(b.dataset.add)));
   $$('[data-del]').forEach(b => b.addEventListener('click', async () => { const tr = b.closest('tr'); const res = await adapter.remove(tr.dataset.coll, tr.dataset.row); if (res.ok){ tr.remove(); toast('Row removed'); } else toast(res.reason, 'err'); }));
-  $$('#deal-type [data-deal]').forEach(b => b.addEventListener('click', async () => { if (!(await ensureCreated())) return; const fd = adapter.get('feasibility_data', feasId); const fi = { ...(fd.feasibility_inputs || {}) }; fi.feaso = { ...(fi.feaso || {}), deal_type: b.dataset.deal }; const res = await adapter.patch('feasibility_data', feasId, { feasibility_inputs: fi }); if (res.ok){ $$('#deal-type button').forEach(x => x.classList.toggle('on', x === b)); } else toast(res.reason, 'err'); }));
+  $$('#deal-type [data-deal]').forEach(b => b.addEventListener('click', async () => { if (!(await ensureCreated())) return; const fd = adapter.get('feasibility_data', feasId); if (!fd){ toast('Site record missing — reload the page', 'err'); return; } const fi = { ...(fd.feasibility_inputs || {}) }; fi.feaso = { ...(fi.feaso || {}), deal_type: b.dataset.deal }; const res = await adapter.patch('feasibility_data', feasId, { feasibility_inputs: fi }); if (res.ok){ $$('#deal-type button').forEach(x => x.classList.toggle('on', x === b)); } else toast(res.reason, 'err'); }));
   $$('[data-nearby]').forEach(cb => cb.addEventListener('change', async () => {
     if (!(await ensureCreated())) return;
     const existing = adapter.list('feasibility_nearby_explorers', { feasibility_id: feasId }).find(n => n.explorers_project_id === cb.dataset.nearby);
