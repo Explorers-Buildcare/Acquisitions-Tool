@@ -114,6 +114,7 @@ ok(true, 'distance saved');
 ok(!(await page.locator('#deal-rent').isVisible()) && (await page.locator('#deal-price').isVisible()), 'freehold shows asking price only');
 await page.click('[data-deal="leasehold"]'); await page.waitForTimeout(200);
 ok((await page.locator('#deal-rent').isVisible()) && !(await page.locator('#deal-price').isVisible()), 'leasehold shows asking rent only');
+ok((await page.locator('#deal-date label').textContent()) === 'Target completion', 'leasehold date is labelled Target completion');
 await page.click('[data-deal="freehold"]');
 ok((await page.locator('text=Import from ACECQA').count()) === 0, 'ACECQA import removed');
 
