@@ -65,7 +65,11 @@ await page.selectOption('#status-select', 'conditional_go');
 
 // ── Input page (edit existing) ──────────────────────────────────────
 await page.goto(`${base}/new.html?id=${mickId}&mode=local`); await ready();
-ok((await page.locator('#comps tr').count()) === 4, 'competitors table: 3 live + 1 permit');
+ok((await page.locator('#comps tr').count()) === 3, 'competitors table: 3 live');
+ok((await page.locator('#pipes tr').count()) === 1, 'pipeline centres table: 1 permit');
+await page.click('[data-add="pipeline"]');
+ok((await page.locator('#pipes tr').count()) === 2, 'add pipeline centre row');
+await page.locator('#pipes tr').last().locator('[data-del]').click();
 ok((await page.locator('#pots tr').count()) === 3, 'potential table: 3 rows');
 await page.fill('#proposed_places', '130'); await page.locator('#proposed_places').dispatchEvent('change');
 await page.waitForFunction(() => window.__adapter.get('feasibility_data', new URLSearchParams(location.search).get('id')).proposed_places === 130);
@@ -78,7 +82,7 @@ await page.click('[data-add="potential"]');
 ok((await page.locator('#pots tr').count()) === 4, 'add potential competitor row');
 await page.locator('#pots tr').last().locator('[data-del]').click();
 ok((await page.locator('#pots tr').count()) === 3, 'remove row');
-ok((await page.locator('#comps .pc button').count()) === 4, 'photo + button on every competitor row');
+ok((await page.locator('#comps .pc button').count()) === 3 && (await page.locator('#pipes .pc button').count()) === 1, 'photo + button on every competitor and pipeline row');
 ok((await page.locator('#schools .pc button').count()) === 2, 'photo + button on every school row');
 
 // ── Reference pickers: council → estates, centres, deal field ────────

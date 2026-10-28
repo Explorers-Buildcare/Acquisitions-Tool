@@ -24,7 +24,8 @@ function pc(paths, onAddAttr){
   return `<div class="pc" data-photo-group>${thumbs}${more}<button type="button" ${onAddAttr} aria-label="Add photo">+</button></div>`;
 }
 
-function compRow(c, potential, lk){
+function compRow(c, mode, lk){
+  const potential = mode === 'potential';
   const stageOpts = lk.stage.map(o => `<option value="${esc(o.value)}" ${c.stage === o.value || c.stage === o.label ? 'selected' : ''}>${esc(o.label)}</option>`).join('');
   const confOpts = lk.conf.map(o => `<option value="${esc(o.value)}" ${String(c.confidence || '').toLowerCase() === o.value ? 'selected' : ''}>${esc(o.label)}</option>`).join('');
   return potential ? `<tr data-row="${esc(c.id)}" data-coll="feasibility_competitors">
@@ -38,15 +39,24 @@ function compRow(c, potential, lk){
       <td style="text-align:center"><input type="checkbox" data-f="count_in_chain" ${c.count_in_chain !== false ? 'checked' : ''} style="width:18px;height:18px;margin:0" aria-label="Count in demand chain"></td>
       <td>${pc(c.photo_paths, `data-photo="${esc(c.id)}" data-sub="competitors/${esc(c.id)}"`)}</td>
       <td><button type="button" class="btn s icon" data-del="${esc(c.id)}" aria-label="Remove row">×</button></td></tr>`
+  : mode === 'pipeline' ? `<tr data-row="${esc(c.id)}" data-coll="feasibility_competitors">
+      <td><input data-f="name" value="${esc(c.name || '')}" placeholder="Site / centre name"></td>
+      <td><input data-f="project_desc" value="${esc(c.project_desc || '')}" placeholder="Description / permit ref"></td>
+      <td><input data-f="stage" list="pipeline-stages" value="${esc(c.stage || '')}" placeholder="Permit issued"></td>
+      <td><input data-f="operator" value="${esc(c.operator || '')}" placeholder="—"></td>
+      <td><input data-f="places" class="mono" value="${esc(c.places ?? '')}" inputmode="numeric"></td>
+      <td><input data-f="distance_km" class="mono" value="${esc(c.distance_km ?? '')}" inputmode="decimal"></td>
+      <td><input data-f="risk_pct" class="mono" value="${esc(c.risk_pct ?? '')}" inputmode="numeric" placeholder="60" title="Likelihood it completes — weights the places in the demand chain"></td>
+      <td>${pc(c.photo_paths, `data-photo="${esc(c.id)}" data-sub="competitors/${esc(c.id)}"`)}</td>
+      <td><button type="button" class="btn s icon" data-del="${esc(c.id)}" aria-label="Remove row">×</button></td></tr>`
   : `<tr data-row="${esc(c.id)}" data-coll="feasibility_competitors">
       <td><input data-f="name" value="${esc(c.name || '')}" placeholder="Centre"></td>
       <td><input data-f="operator" value="${esc(c.operator || '')}"></td>
-      <td><select data-f="status"><option value="live" ${c.status === 'live' ? 'selected' : ''}>Live</option><option value="pipeline" ${c.status === 'pipeline' ? 'selected' : ''}>Permit</option></select></td>
       <td><input data-f="places" class="mono" value="${esc(c.places ?? '')}" inputmode="numeric"></td>
       <td><input data-f="distance_km" class="mono" value="${esc(c.distance_km ?? '')}" inputmode="decimal"></td>
       <td><input data-f="fee" class="mono" value="${esc(c.fee ?? '')}" inputmode="numeric" placeholder="—"></td>
       <td><input data-f="ms_current_capacity" class="mono" value="${esc(c.ms_current_capacity ?? '')}" inputmode="numeric" placeholder="—"></td>
-      <td><input data-f="risk_pct" class="mono" value="${esc(c.risk_pct ?? '')}" inputmode="numeric" placeholder="${c.status === 'pipeline' ? '60' : '—'}" title="Risk weighting % (permits only)"></td>
+      <td><input data-f="nqs_rating" value="${esc(c.nqs_rating || '')}" placeholder="—"></td>
       <td>${pc(c.photo_paths, `data-photo="${esc(c.id)}" data-sub="competitors/${esc(c.id)}"`)}</td>
       <td><button type="button" class="btn s icon" data-del="${esc(c.id)}" aria-label="Remove row">×</button></td></tr>`;
 }
@@ -79,7 +89,8 @@ function render(){
   const p = b ? b.project : {}, fd = b ? b.fd : {};
   const feaso = (fd.feasibility_inputs && fd.feasibility_inputs.feaso) || {};
   const lk = { stage: adapter.lookups('competitor_stage'), conf: adapter.lookups('competitor_confidence'), site: adapter.lookups('site_type') };
-  const comps = b ? b.competitors.filter(c => c.status !== 'potential') : [];
+  const comps = b ? b.competitors.filter(c => (c.status || 'live') === 'live' || c.status === 'closed') : [];
+  const pipes = b ? b.competitors.filter(c => c.status === 'pipeline') : [];
   const pots = b ? b.competitors.filter(c => c.status === 'potential') : [];
   // Centres only (type 'centre', seeded by sql/26 from the website). The PM
   // tool's construction projects (type 'project') are NOT centres — they are
@@ -89,7 +100,7 @@ function render(){
   const seen = new Set(dbCentres.map(c => c.id));
   const centres = [...dbCentres.map(c => ({ ...c, status: c.type === 'project' ? 'project' : c.active === false ? 'opening' : 'open' })), ...EXPLORERS_CENTRES.filter(c => !seen.has(c.id))].sort((a, c) => a.name.localeCompare(c.name));
   const ro = !adapter.canWrite();
-  const done = { s1: !!(p.name && fd.site_address && fd.proposed_places), s2: !!(fd.price || feaso.lease_rent), s3: !!fd.gapmaps_5min, s4: comps.length > 0, s5: (b ? b.schools.length : 0) > 0, s6: (b ? b.estates.length : 0) > 0, s7: (b ? b.nearby.length : 0) > 0, s8: !!(fd.site_other_notes || (fd.photo_paths || []).length) };
+  const done = { s1: !!(p.name && fd.site_address && fd.proposed_places), s2: !!(fd.price || feaso.lease_rent), s3: !!fd.gapmaps_5min, s4: comps.length + pipes.length > 0, s5: (b ? b.schools.length : 0) > 0, s6: (b ? b.estates.length : 0) > 0, s7: (b ? b.nearby.length : 0) > 0, s8: !!(fd.site_other_notes || (fd.photo_paths || []).length) };
 
   $('#app').innerHTML = appbar('Pipeline', { adapter }) + `
   <main class="page">
@@ -131,14 +142,21 @@ function render(){
             <div class="f"><label>SEIFA</label><input class="mono" value="${esc(fd.gapmaps_5min?.seifa ?? '—')}" disabled><span class="u">from GapMaps</span></div>
           </div>
         </section>
-        <section class="card sec" id="s4"><h2><span class="n">4</span>Competitors</h2><p class="hint">Live centres and pipeline permits in the catchment. Photos: click + on a row — they attach to that row's photo set, not the site's.</p>
-          <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Centre</th><th>Operator</th><th>Status</th><th>Places</th><th>Dist. km</th><th>Fee / day</th><th>Occ. %</th><th>Risk %</th><th>Photos</th><th></th></tr></thead>
-            <tbody id="comps">${comps.map(c => compRow(c, false, lk)).join('')}</tbody></table></div>
+        <section class="card sec" id="s4"><h2><span class="n">4</span>Competitors</h2><p class="hint">Operating centres in the catchment. Photos: click + on a row — they attach to that row's photo set, not the site's.</p>
+          <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:24%">Centre</th><th>Operator</th><th>Places</th><th>Dist. km</th><th>Fee / day</th><th>Occ. %</th><th>NQS</th><th>Photos</th><th></th></tr></thead>
+            <tbody id="comps">${comps.map(c => compRow(c, 'live', lk)).join('')}</tbody></table></div>
           <button type="button" class="add" data-add="competitor">+ Add competitor</button>
+          <div style="border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:12px">
+            <div><h3>Pipeline centres</h3><p class="hint" style="margin-top:4px">Approved or under-construction centres that aren't open yet. <strong>Risk %</strong> is the likelihood it completes — the places are weighted by it in step 4 of the demand chain.</p></div>
+            <datalist id="pipeline-stages"><option value="Permit issued"><option value="Under construction"><option value="Fit-out"><option value="Opening soon"></datalist>
+            <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / centre</th><th>Description</th><th>Stage</th><th>Operator</th><th>Places</th><th>Dist. km</th><th>Risk %</th><th>Photos</th><th></th></tr></thead>
+              <tbody id="pipes">${pipes.map(c => compRow(c, 'pipeline', lk)).join('')}</tbody></table></div>
+            <button type="button" class="add" data-add="pipeline">+ Add pipeline centre</button>
+          </div>
           <div style="border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:12px">
             <div><h3>Potential competitors</h3><p class="hint" style="margin-top:4px">Sites that could become centres but have no permit yet. Tick <strong>Count</strong> to include the risk-weighted places in the pipeline step of the demand chain; otherwise they show in the report as a watch item only.</p></div>
             <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / description</th><th>Stage</th><th>Est. places</th><th>Dist. km</th><th>Source</th><th>Confidence</th><th>Risk %</th><th>Count</th><th>Photos</th><th></th></tr></thead>
-              <tbody id="pots">${pots.map(c => compRow(c, true, lk)).join('')}</tbody></table></div>
+              <tbody id="pots">${pots.map(c => compRow(c, 'potential', lk)).join('')}</tbody></table></div>
             <button type="button" class="add" data-add="potential">+ Add potential competitor</button>
           </div>
         </section>
@@ -211,6 +229,7 @@ async function addRow(kind){
   const id = adapter.newId();
   const base = { id, feasibility_id: feasId, sort_order: Date.now() % 100000, photo_paths: [] };
   if (kind === 'competitor') await adapter.upsert('feasibility_competitors', { ...base, status: 'live', name: '' });
+  if (kind === 'pipeline') await adapter.upsert('feasibility_competitors', { ...base, status: 'pipeline', name: '', stage: 'Permit issued', risk_pct: 60 });
   if (kind === 'potential') await adapter.upsert('feasibility_competitors', { ...base, status: 'potential', name: '', stage: 'rumoured', confidence: 'medium', risk_pct: 40, count_in_chain: false });
   if (kind === 'school') await adapter.upsert('feasibility_schools', { ...base, name: '', type: 'primary', sector: 'public' });
   if (kind === 'estate') await adapter.upsert('feasibility_estates', { ...base, name: '', pct_in_catch: 100 });
