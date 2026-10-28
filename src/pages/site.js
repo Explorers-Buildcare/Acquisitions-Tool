@@ -1,4 +1,4 @@
-import { boot, appbar, esc, $, $$, href, toast, ICON, statusChip, qs } from '../ui/shell.js';
+import { boot, appbar, esc, $, $$, href, toast, ICON, statusChip, qs, hydratePhotos } from '../ui/shell.js';
 import { computeFeasibilityMetrics, fmtRatio, fmtAud, fmtN, fmtPct, ratingCls } from '../logic/metrics.js';
 import { canonicalStatus, ACTIVE_STATUSES, STATUS_ORDER, statusOptions, relativeTime, statusLabel } from '../logic/status.js';
 import { runPreflight } from '../logic/preflight.js';
@@ -113,7 +113,7 @@ function siteTab(b){
     <section class="card"><h2>Notes</h2><p style="margin:10px 0 0;white-space:pre-wrap">${esc(fd.site_other_notes || '—')}</p></section>
     <section class="card"><h2>Schools</h2><div style="overflow-x:auto;margin-top:12px"><table><thead><tr><th>School</th><th>Type</th><th>Sector</th><th>Enrolments</th><th>Dist.</th></tr></thead><tbody>${b.schools.map(s => `<tr><td style="font-weight:600">${esc(s.name)}</td><td>${esc(s.type)}</td><td>${esc(s.sector)}</td><td class="mono">${fmtN(s.enrolments)}</td><td class="mono">${esc(s.distance_km)} km</td></tr>`).join('') || '<tr><td colspan="5" class="empty">None entered.</td></tr>'}</tbody></table></div></section>
   </div><aside class="side-col">${mapCard(b, computeFeasibilityMetrics(b))}
-    <section class="card"><h2>Photos</h2><p class="sub">${(fd.photo_paths || []).length} site photos · ${b.competitors.reduce((a, c) => a + (c.photo_paths || []).length, 0)} on competitors · ${b.schools.reduce((a, s) => a + (s.photo_paths || []).length, 0)} on schools</p><div class="pc">${(fd.photo_paths || []).slice(0, 6).map(() => '<span></span>').join('')}</div></section>
+    <section class="card"><h2>Photos</h2><p class="sub">${(fd.photo_paths || []).length} site photos · ${b.competitors.reduce((a, c) => a + (c.photo_paths || []).length, 0)} on competitors · ${b.schools.reduce((a, s) => a + (s.photo_paths || []).length, 0)} on schools</p><div id="site-photos" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px">${[...(fd.photo_paths || []), ...b.competitors.flatMap(c => (c.photo_paths || []).map(pp => pp)), ...b.schools.flatMap(s => (s.photo_paths || []))].slice(0, 9).map(pp => `<a href="#" data-photo-path="${esc(pp)}" style="aspect-ratio:1;border-radius:8px;background:var(--sage) center/cover no-repeat;display:block"></a>`).join('') || '<div class="muted" style="grid-column:1/-1">No photos on file — the Photos tab in the report lists everything in storage.</div>'}</div></section>
   </aside></div>`;
 }
 
@@ -149,6 +149,7 @@ function render(){
   </main></div>`;
   $$('[data-tab]').forEach(btn => btn.addEventListener('click', () => { tab = btn.dataset.tab; history.replaceState(null, '', href('site.html', { id, tab })); render(); }));
   const ss = $('#status-select'); if (ss) ss.addEventListener('change', async () => { const res = await adapter.patch('feasibility_data', id, { status: ss.value }); if (res.ok){ toast('Status updated'); render(); } else toast(res.reason, 'err'); });
+  hydratePhotos(adapter, id).then(() => { $$('#site-photos [data-photo-path]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); const u = a.style.backgroundImage.slice(5, -2); if (u) window.open(u, '_blank'); })); });
   const bc = $('#btn-comment'); if (bc) bc.addEventListener('click', async () => { const t = $('#new-comment').value.trim(); if (!t) return; const res = await adapter.upsert('feasibility_comments', { id: adapter.newId(), feasibility_id: id, author: adapter.user.initials, comment: t }); if (res.ok) render(); else toast(res.reason, 'err'); });
 }
 

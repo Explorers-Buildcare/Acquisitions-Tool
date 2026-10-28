@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-27T12:39:58.795Z",
+ "generated_at": "2026-10-28T01:14:08.065Z",
  "projects": [
   {
    "id": "proj0000-0001-0000-0000-000000000000",
@@ -42,8 +42,8 @@
    "name": "Mickleham — Donnybrook Rd",
    "code": "ACQ-0412",
    "active": true,
-   "created_at": "2026-09-09T12:39:58.792Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.063Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "feas0000-0019-0000-0000-000000000000",
@@ -51,8 +51,8 @@
    "name": "Wollert — Epping Rd",
    "code": "ACQ-0409",
    "active": true,
-   "created_at": "2026-09-27T12:39:58.793Z",
-   "updated_at": "2026-10-27T12:39:58.793Z"
+   "created_at": "2026-09-28T01:14:08.064Z",
+   "updated_at": "2026-10-28T01:14:08.064Z"
   },
   {
    "id": "feas0000-0031-0000-0000-000000000000",
@@ -60,8 +60,8 @@
    "name": "Cobblebank — Ferris Rd",
    "code": "ACQ-0415",
    "active": true,
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "feas0000-0037-0000-0000-000000000000",
@@ -69,8 +69,8 @@
    "name": "Caroline Springs — Caroline Springs Bvd",
    "code": "ACQ-0398",
    "active": true,
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "feas0000-0045-0000-0000-000000000000",
@@ -78,8 +78,8 @@
    "name": "Clyde North — Pattersons Rd",
    "code": "ACQ-0392",
    "active": true,
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   }
  ],
  "feasibility_data": [
@@ -189,7 +189,12 @@
      "historical_growth_pct": 32.4
     },
     "population_projection": {
-     "total_2026": 28688
+     "2021": 28688,
+     "2022": 28499,
+     "2023": 28257,
+     "2024": 27867,
+     "2025": 27324,
+     "2026": 26826
     }
    },
    "gapmaps_10min": {
@@ -227,7 +232,12 @@
      "historical_growth_pct": 32.4
     },
     "population_projection": {
-     "total_2026": 67320
+     "2021": 67320,
+     "2022": 67881,
+     "2023": 68411,
+     "2024": 68794,
+     "2025": 69023,
+     "2026": 68970
     }
    },
    "feasibility_inputs": {
@@ -244,9 +254,9 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-25T12:39:58.793Z",
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "last_saved_at": "2026-10-26T01:14:08.064Z",
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "feas0000-0019-0000-0000-000000000000",
@@ -298,7 +308,12 @@
      "historical_growth_pct": 32.4
     },
     "population_projection": {
-     "total_2026": 20240
+     "2021": 20240,
+     "2022": 21318,
+     "2023": 22308,
+     "2024": 23437,
+     "2025": 24473,
+     "2026": 25410
     }
    },
    "gapmaps_10min": null,
@@ -314,9 +329,9 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-27T12:39:58.793Z",
-   "created_at": "2026-09-27T12:39:58.793Z",
-   "updated_at": "2026-10-27T12:39:58.793Z"
+   "last_saved_at": "2026-10-28T01:14:08.064Z",
+   "created_at": "2026-09-28T01:14:08.064Z",
+   "updated_at": "2026-10-28T01:14:08.064Z"
   },
   {
    "id": "feas0000-0031-0000-0000-000000000000",
@@ -347,9 +362,9 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-09-19T12:39:58.794Z",
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "last_saved_at": "2026-09-20T01:14:08.065Z",
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "feas0000-0037-0000-0000-000000000000",
@@ -401,7 +416,12 @@
      "historical_growth_pct": 32.4
     },
     "population_projection": {
-     "total_2026": 25410
+     "2021": 25410,
+     "2022": 26143,
+     "2023": 26884,
+     "2024": 27518,
+     "2025": 28274,
+     "2026": 29040
     }
    },
    "gapmaps_10min": null,
@@ -419,9 +439,9 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-21T12:39:58.794Z",
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "last_saved_at": "2026-10-22T01:14:08.065Z",
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "feas0000-0045-0000-0000-000000000000",
@@ -473,7 +493,12 @@
      "historical_growth_pct": 32.4
     },
     "population_projection": {
-     "total_2026": 34100
+     "2021": 34100,
+     "2022": 35343,
+     "2023": 36494,
+     "2024": 37545,
+     "2025": 38491,
+     "2026": 39325
     }
    },
    "gapmaps_10min": null,
@@ -489,9 +514,9 @@
    "report_config": {},
    "sections_complete": {},
    "photo_paths": [],
-   "last_saved_at": "2026-10-06T12:39:58.794Z",
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "last_saved_at": "2026-10-07T01:14:08.065Z",
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   }
  ],
  "feasibility_competitors": [
@@ -515,8 +540,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0006-0000-0000-000000000000",
@@ -538,8 +563,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0007-0000-0000-000000000000",
@@ -561,8 +586,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0008-0000-0000-000000000000",
@@ -584,8 +609,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0009-0000-0000-000000000000",
@@ -607,8 +632,8 @@
    "confidence": "High",
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0010-0000-0000-000000000000",
@@ -630,8 +655,8 @@
    "confidence": "Medium",
    "count_in_chain": false,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0011-0000-0000-000000000000",
@@ -653,8 +678,8 @@
    "confidence": "Low",
    "count_in_chain": false,
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "comp0000-0020-0000-0000-000000000000",
@@ -676,8 +701,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.793Z",
-   "updated_at": "2026-10-27T12:39:58.793Z"
+   "created_at": "2026-09-28T01:14:08.064Z",
+   "updated_at": "2026-10-28T01:14:08.064Z"
   },
   {
    "id": "comp0000-0021-0000-0000-000000000000",
@@ -699,8 +724,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.793Z",
-   "updated_at": "2026-10-27T12:39:58.793Z"
+   "created_at": "2026-09-28T01:14:08.064Z",
+   "updated_at": "2026-10-28T01:14:08.064Z"
   },
   {
    "id": "comp0000-0022-0000-0000-000000000000",
@@ -722,8 +747,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "comp0000-0023-0000-0000-000000000000",
@@ -745,8 +770,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "comp0000-0024-0000-0000-000000000000",
@@ -768,8 +793,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "comp0000-0025-0000-0000-000000000000",
@@ -791,8 +816,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "comp0000-0026-0000-0000-000000000000",
@@ -814,8 +839,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "comp0000-0032-0000-0000-000000000000",
@@ -837,8 +862,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "comp0000-0033-0000-0000-000000000000",
@@ -860,8 +885,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "comp0000-0038-0000-0000-000000000000",
@@ -883,8 +908,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "comp0000-0039-0000-0000-000000000000",
@@ -906,8 +931,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "comp0000-0040-0000-0000-000000000000",
@@ -929,8 +954,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "comp0000-0041-0000-0000-000000000000",
@@ -952,8 +977,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "comp0000-0046-0000-0000-000000000000",
@@ -975,8 +1000,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   },
   {
    "id": "comp0000-0047-0000-0000-000000000000",
@@ -998,8 +1023,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   },
   {
    "id": "comp0000-0048-0000-0000-000000000000",
@@ -1021,8 +1046,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   },
   {
    "id": "comp0000-0049-0000-0000-000000000000",
@@ -1044,8 +1069,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   },
   {
    "id": "comp0000-0050-0000-0000-000000000000",
@@ -1067,8 +1092,8 @@
    "confidence": null,
    "count_in_chain": true,
    "photo_paths": [],
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   }
  ],
  "feasibility_schools": [
@@ -1083,8 +1108,8 @@
    "distance_km": 0.8,
    "address": "Merrifield Bvd, Mickleham",
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "schl0000-0013-0000-0000-000000000000",
@@ -1097,8 +1122,8 @@
    "distance_km": 2.4,
    "address": "Mt Ridley Rd, Mickleham",
    "photo_paths": [],
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "schl0000-0027-0000-0000-000000000000",
@@ -1111,8 +1136,8 @@
    "distance_km": 0.6,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "schl0000-0028-0000-0000-000000000000",
@@ -1125,8 +1150,8 @@
    "distance_km": 1.9,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "schl0000-0034-0000-0000-000000000000",
@@ -1139,8 +1164,8 @@
    "distance_km": 0.5,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "schl0000-0042-0000-0000-000000000000",
@@ -1153,8 +1178,8 @@
    "distance_km": 0.9,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "schl0000-0043-0000-0000-000000000000",
@@ -1167,8 +1192,8 @@
    "distance_km": 1.2,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   },
   {
    "id": "schl0000-0051-0000-0000-000000000000",
@@ -1181,8 +1206,8 @@
    "distance_km": 0.7,
    "address": null,
    "photo_paths": [],
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   }
  ],
  "feasibility_estates": [
@@ -1196,8 +1221,8 @@
    "monthly_rate": 38,
    "pct_in_catch": 70,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "estt0000-0015-0000-0000-000000000000",
@@ -1209,8 +1234,8 @@
    "monthly_rate": 22,
    "pct_in_catch": 100,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "estt0000-0029-0000-0000-000000000000",
@@ -1222,8 +1247,8 @@
    "monthly_rate": 14,
    "pct_in_catch": 60,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-09-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   },
   {
    "id": "estt0000-0035-0000-0000-000000000000",
@@ -1235,8 +1260,8 @@
    "monthly_rate": 30,
    "pct_in_catch": 80,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "estt0000-0036-0000-0000-000000000000",
@@ -1248,8 +1273,8 @@
    "monthly_rate": 18,
    "pct_in_catch": 50,
    "children_per_lot": 0.42,
-   "created_at": "2026-09-17T12:39:58.794Z",
-   "updated_at": "2026-09-19T12:39:58.794Z"
+   "created_at": "2026-09-18T01:14:08.065Z",
+   "updated_at": "2026-09-20T01:14:08.065Z"
   },
   {
    "id": "estt0000-0052-0000-0000-000000000000",
@@ -1261,8 +1286,8 @@
    "monthly_rate": 26,
    "pct_in_catch": 90,
    "children_per_lot": 0.42,
-   "created_at": "2026-04-10T12:39:58.794Z",
-   "updated_at": "2026-10-06T12:39:58.794Z"
+   "created_at": "2026-04-11T01:14:08.065Z",
+   "updated_at": "2026-10-07T01:14:08.065Z"
   }
  ],
  "feasibility_nearby_explorers": [
@@ -1275,8 +1300,8 @@
    "places": 112,
    "occupancy_pct": 88,
    "counts": true,
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "near0000-0017-0000-0000-000000000000",
@@ -1287,8 +1312,8 @@
    "places": 96,
    "occupancy_pct": 79,
    "counts": false,
-   "created_at": "2026-09-09T12:39:58.793Z",
-   "updated_at": "2026-10-25T12:39:58.793Z"
+   "created_at": "2026-09-10T01:14:08.064Z",
+   "updated_at": "2026-10-26T01:14:08.064Z"
   },
   {
    "id": "near0000-0044-0000-0000-000000000000",
@@ -1299,8 +1324,8 @@
    "places": 104,
    "occupancy_pct": 86,
    "counts": false,
-   "created_at": "2026-06-29T12:39:58.794Z",
-   "updated_at": "2026-10-21T12:39:58.794Z"
+   "created_at": "2026-06-30T01:14:08.065Z",
+   "updated_at": "2026-10-22T01:14:08.065Z"
   }
  ],
  "explorers_centre_data": [
@@ -1333,8 +1358,8 @@
    "author": "JK",
    "comment": "Step 3 CALD factor looks generous for this catchment — revisit once place-of-birth refreshed.",
    "section": "demand",
-   "created_at": "2026-10-19T12:39:58.793Z",
-   "updated_at": "2026-10-19T12:39:58.793Z"
+   "created_at": "2026-10-20T01:14:08.064Z",
+   "updated_at": "2026-10-20T01:14:08.064Z"
   },
   {
    "id": "cmnt0000-0030-0000-0000-000000000000",
@@ -1342,8 +1367,8 @@
    "author": "SM",
    "comment": "Added 2 competitors from ACECQA refresh.",
    "section": null,
-   "created_at": "2026-10-27T12:39:58.794Z",
-   "updated_at": "2026-10-27T12:39:58.794Z"
+   "created_at": "2026-10-28T01:14:08.065Z",
+   "updated_at": "2026-10-28T01:14:08.065Z"
   }
  ],
  "lookups": [

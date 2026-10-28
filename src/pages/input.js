@@ -1,7 +1,7 @@
 // New / edit feasibility — everything on one page.
 // Works for a brand-new site (creates the project + feasibility_data rows on
 // first save) and for an existing one (?id=). Every field is write-through.
-import { boot, appbar, esc, $, $$, href, toast, ICON, qs, num } from '../ui/shell.js';
+import { boot, appbar, esc, $, $$, href, toast, ICON, qs, num, hydratePhotos } from '../ui/shell.js';
 import { statusOptions } from '../logic/status.js';
 import { fmtAud } from '../logic/metrics.js';
 import { CONFIG } from '../config.js';
@@ -18,7 +18,7 @@ const field = (id, label, value, { type = 'text', req = false, unit = '', placeh
   ${unit ? `<span class="u">${unit}</span>` : ''}</div>`;
 
 function pc(paths, onAddAttr){
-  const thumbs = (paths || []).slice(0, 2).map(() => '<span></span>').join('');
+  const thumbs = (paths || []).slice(0, 2).map(pp => `<span data-photo-path="${esc(pp)}" style="background-size:cover;background-position:center"></span>`).join('');
   const more = (paths || []).length > 2 ? `<span class="more">+${paths.length - 2}</span>` : '';
   return `<div class="pc">${thumbs}${more}<button type="button" ${onAddAttr} aria-label="Add photo">+</button></div>`;
 }
@@ -152,6 +152,7 @@ function render(){
     </div>
   </main>`;
   wire();
+  if (feasId) hydratePhotos(adapter, feasId);
 }
 
 async function ensureCreated(){

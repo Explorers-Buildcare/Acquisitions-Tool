@@ -91,20 +91,21 @@ await page.waitForURL(/site\.html\?id=/); await ready();
 ok(await page.locator('h1', { hasText: 'QA Site' }).isVisible(), 'create → opens workspace');
 ok(await page.locator('text=GapMaps').first().isVisible(), 'new site shows missing data');
 
-// ── Report workspace ────────────────────────────────────────────────
+// ── Report workspace (legacy 14-slide deck, ported) ──────────────────
 await page.goto(`${base}/report.html?id=${mickId}&mode=local`); await ready();
-ok((await page.locator('[data-slide]').count()) === 12, '12 slides in rail');
-ok(await page.locator('.slide .eyebrow', { hasText: 'Executive summary' }).isVisible(), 'exec summary is the default slide');
-ok(await page.locator('#btn-pdf').isDisabled(), 'Export PDF blocked while pre-flight has blockers');
+ok((await page.locator('[data-hide]').count()) === 14, '14 slides in rail');
+ok((await page.locator('#deck .rpt-cover').count()) === 1, 'cover slide renders');
+ok((await page.locator('#deck .rpt-slide').count()) === 13, '13 body slides render');
+ok(await page.locator('#deck .rpt-slide-hdr-title', { hasText: 'Executive Summary' }).first().isVisible(), 'executive summary slide present');
+ok(/^\d\.\d\dx$/.test((await page.locator('#deck .rpt-cover-kpi-val').first().textContent()).trim()), 'cover hero shows a computed effective ratio');
+ok(await page.locator('#btn-pdf').isDisabled(), 'Print/PDF blocked while pre-flight has blockers');
 ok(await page.locator('.iss.block', { hasText: 'Trend tag' }).isVisible(), 'trend-tag blocker shown');
-await page.fill('#sum', 'Effective ratio 9.99× is made up.'); await page.locator('#sum').dispatchEvent('blur');
-ok(await page.locator('.toast.err').isVisible(), 'prose figure that does not match data is flagged');
-await page.fill('#sum', 'Checked prose.'); await page.locator('#sum').dispatchEvent('change');
-await page.waitForFunction(() => (window.__adapter.get('feasibility_data', new URLSearchParams(location.search).get('id')).report_config.slides || {}).exec?.summary === 'Checked prose.');
-ok(true, 'summary saved to report_config');
-await page.click('[data-slide="cover"]');
-ok(await page.locator('.slide', { hasText: 'Effective demand signal' }).isVisible(), 'cover slide renders');
-ok(await page.locator('.editor').locator('text=no free prose').isVisible(), 'generated slides have no prose editor');
+await page.locator('[data-hide="nearby_anchors"]').uncheck();
+await page.waitForFunction(() => (window.__adapter.get('feasibility_data', new URLSearchParams(location.search).get('id')).report_config.hidden_slides || []).includes('nearby_anchors'));
+ok((await page.locator('#deck .rpt-slide').count()) === 12, 'hiding a slide removes it from the deck and persists to report_config.hidden_slides');
+await page.locator('[data-hide="nearby_anchors"]').check();
+await page.waitForFunction(() => document.querySelectorAll('#deck .rpt-slide').length === 13);
+ok(true, 'un-hiding restores the slide');
 
 // ── Phone ───────────────────────────────────────────────────────────
 await page.setViewportSize({ width: 390, height: 844 });

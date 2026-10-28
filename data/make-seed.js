@@ -25,7 +25,7 @@ function gm(children05, places, overseasPct, seifa, income, proj, neAsia){
     ],
     // trend_tag reproduces the old tool's behaviour (tag from the HISTORICAL rate) so pre-flight has something to catch on declining projections
     age_projection_0_5: { ...years, trend_tag: 'Growing', historical_growth_pct: 32.4 },
-    population_projection: { total_2026: children05 * 11 },
+    population_projection: Object.fromEntries(proj.map((v, i) => [String(2021 + i), Math.round(v * 11 * (1 + i * 0.02))])),
   };
 }
 

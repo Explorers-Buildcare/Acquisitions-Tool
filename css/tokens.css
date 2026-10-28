@@ -21,3 +21,11 @@
   --r-s:6px; --r:8px; --r-l:12px;
   --shadow:0 1px 2px rgba(43,36,30,.06);
 }
+
+/* ── Compatibility aliases for the legacy report stylesheet (css/report.css) ── */
+:root{
+  --surface:#fff; --border:var(--rule); --border-s:var(--rule-3);
+  --t1:var(--ink); --t2:var(--ink-2); --t3:var(--ink-3); --charcoal:var(--ink);
+  --accent:var(--brush); --green:var(--myrtle); --green-l:var(--gum); --amber:#A54A1F; --amber-l:var(--brush-l);
+  --red-l:var(--red-l); --blue:var(--pine); --blue-l:var(--gum);
+}

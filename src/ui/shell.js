@@ -121,3 +121,17 @@ export function bindField(input, adapter, collection, id, field, { parse = v => 
   return save;
 }
 export const num = v => (v === '' || v == null) ? null : Number(String(v).replace(/[,$\s]/g, ''));
+
+// Fill every [data-photo-path] element on the page with its signed URL once
+// the feasibility's photo index is available. Elements render as placeholders
+// first, so the page never waits on Storage.
+export async function hydratePhotos(adapter, feasId){
+  const els = $$('[data-photo-path]'); if (!els.length || !feasId) return;
+  let idx; try { idx = await adapter.photoIndex(feasId); } catch(e){ return; }
+  els.forEach(el => {
+    const url = idx.urlFor(el.dataset.photoPath);
+    if (!url) return;
+    if (el.tagName === 'IMG') el.src = url; else el.style.backgroundImage = `url("${url}")`;
+    el.title = el.dataset.photoPath;
+  });
+}

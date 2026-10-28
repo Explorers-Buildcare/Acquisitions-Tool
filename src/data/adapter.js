@@ -155,11 +155,17 @@ export class LocalAdapter extends BaseAdapter {
     return this.upsert(c, { ...existing, deleted_at: nowISO() });
   }
   async uploadPhoto(feasId, file, subpath){
-    // Dummy mode: object URL only, never persisted.
-    const path = `${feasId}/${subpath || 'site'}/${Date.now()}-${file.name}`;
-    return { ok: true, path, url: URL.createObjectURL(file) };
+    // Dummy mode: object URL only, never persisted. Paths are RELATIVE to the
+    // feasibility folder, matching the Supabase convention.
+    const path = `${subpath || 'photos'}/${Date.now()}-${file.name}`;
+    this._localPhotos = this._localPhotos || {}; (this._localPhotos[feasId] = this._localPhotos[feasId] || {})[path] = URL.createObjectURL(file);
+    return { ok: true, path, url: this._localPhotos[feasId][path] };
   }
-  photoUrl(path){ return null; }
+  // Photo index for one feasibility: { paths: [relPath…], urlFor(relPath) → url|'' }
+  async photoIndex(feasId){
+    const map = (this._localPhotos && this._localPhotos[feasId]) || {};
+    return { paths: Object.keys(map), urlFor: p => map[p] || '' };
+  }
 }
 
 /* ── supabase-js loader: vendored UMD first (self-contained), CDN fallback ── */
@@ -262,15 +268,48 @@ export class SupabaseAdapter extends BaseAdapter {
     this._emit('sync', { state: 'err', label: msg });
     return { ok: false, code: denied ? 'forbidden' : schema ? 'schema' : 'error', reason: schema ? `${msg} — run sql/25-acquisitions-v2.sql` : msg };
   }
+  // Storage convention (same as the current tool): bucket 'feasibility-photos',
+  // object key = `${feasId}/${relPath}`; rows store relPath only.
   async uploadPhoto(feasId, file, subpath){
-    const path = `${feasId}/${subpath || 'site'}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
-    const { error } = await this.sb.storage.from(CONFIG.supabase.photoBucket).upload(path, file, { upsert: false });
+    const rel = `${subpath || 'photos'}/${Date.now()}-${file.name.replace(/[^a-zA-Z0-9._-]/g, '_')}`;
+    const { error } = await this.sb.storage.from(CONFIG.supabase.photoBucket).upload(`${feasId}/${rel}`, file, { upsert: false });
     if (error) return this._fail(error);
-    return { ok: true, path, url: await this.photoUrl(path) };
+    this._photoCache = this._photoCache || {}; delete this._photoCache[feasId]; // invalidate index
+    return { ok: true, path: rel, url: await this.photoUrl(feasId, rel) };
   }
-  async photoUrl(path){
-    const { data } = await this.sb.storage.from(CONFIG.supabase.photoBucket).createSignedUrl(path, 3600);
-    return data ? data.signedUrl : null;
+  async photoUrl(feasId, rel){
+    const { data } = await this.sb.storage.from(CONFIG.supabase.photoBucket).createSignedUrl(`${feasId}/${rel}`, 3600);
+    return data ? data.signedUrl : '';
+  }
+  // Walk the known sub-folders (the Storage list API is one level deep) and
+  // sign everything in one batch. Cached per feasibility for ~50 minutes.
+  async photoIndex(feasId){
+    this._photoCache = this._photoCache || {};
+    const hit = this._photoCache[feasId];
+    if (hit && hit.expires > Date.now()) return hit.index;
+    const bucket = this.sb.storage.from(CONFIG.supabase.photoBucket);
+    const folders = ['', 'photos/', 'competitors/', 'schools/', 'nearmaps/', 'gapmaps/', 'pipeline/', 'site/'];
+    const rels = [];
+    const walk = async (prefix, depth) => {
+      const { data, error } = await bucket.list(`${feasId}/${prefix}`, { limit: 500, sortBy: { column: 'name', order: 'asc' } });
+      if (error || !data) return;
+      for (const o of data){
+        if (!o.name) continue;
+        const isFolder = o.id == null && !o.metadata;
+        if (isFolder){ if (depth < 2) await walk(prefix + o.name + '/', depth + 1); continue; }
+        if (/\.(png|jpe?g|gif|webp|pdf)$/i.test(o.name)) rels.push(prefix + o.name);
+      }
+    };
+    for (const f of folders) await walk(f, f === '' ? 0 : 1);
+    const uniq = [...new Set(rels)];
+    const map = {};
+    if (uniq.length){
+      const { data } = await bucket.createSignedUrls(uniq.map(r => `${feasId}/${r}`), 3600);
+      (data || []).forEach((d, i) => { if (d && d.signedUrl) map[uniq[i]] = d.signedUrl; });
+    }
+    const index = { paths: uniq, urlFor: p => map[p] || '' };
+    this._photoCache[feasId] = { index, expires: Date.now() + 50 * 60 * 1000 };
+    return index;
   }
   async signIn(email, password){ await this.client(); return this.sb.auth.signInWithPassword({ email, password }); }
   async signOut(){ await this.client(); return this.sb.auth.signOut(); }
