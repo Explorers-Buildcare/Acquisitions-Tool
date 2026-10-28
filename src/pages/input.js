@@ -24,6 +24,8 @@ function pc(paths, onAddAttr){
   return `<div class="pc" data-photo-group>${thumbs}${more}<button type="button" ${onAddAttr} aria-label="Add photo">+</button></div>`;
 }
 
+const STAGES = ['DA lodged', 'DA approved', 'Permit issued', 'Under construction', 'Fit-out', 'Opening soon', 'Already open'];
+const STAGE_DEFAULT_PCT = { 'DA lodged': 40, 'DA approved': 60, 'Permit issued': 60, 'Under construction': 90, 'Fit-out': 95, 'Opening soon': 100, 'Already open': 100 };
 function compRow(c, mode, lk){
   const potential = mode === 'potential';
   const stageOpts = lk.stage.map(o => `<option value="${esc(o.value)}" ${c.stage === o.value || c.stage === o.label ? 'selected' : ''}>${esc(o.label)}</option>`).join('');
@@ -42,7 +44,7 @@ function compRow(c, mode, lk){
   : mode === 'pipeline' ? `<tr data-row="${esc(c.id)}" data-coll="feasibility_competitors">
       <td><input data-f="name" value="${esc(c.name || '')}" placeholder="Site / centre name"></td>
       <td><input data-f="project_desc" value="${esc(c.project_desc || '')}" placeholder="Description / permit ref"></td>
-      <td><select data-f="stage">${['DA lodged', 'DA approved', 'Permit issued', 'Under construction', 'Fit-out', 'Opening soon'].concat(c.stage && !['DA lodged', 'DA approved', 'Permit issued', 'Under construction', 'Fit-out', 'Opening soon'].some(x => x.toLowerCase() === String(c.stage).toLowerCase()) ? [c.stage] : []).map(st => `<option value="${esc(st)}" ${String(c.stage || '').toLowerCase() === st.toLowerCase() ? 'selected' : ''}>${esc(st)}</option>`).join('')}</select></td>
+      <td><select data-f="stage">${STAGES.concat(c.stage && !STAGES.some(x => x.toLowerCase() === String(c.stage).toLowerCase()) ? [c.stage] : []).map(st => `<option value="${esc(st)}" ${String(c.stage || '').toLowerCase() === st.toLowerCase() ? 'selected' : ''}>${esc(st)}</option>`).join('')}</select></td>
       <td><input data-f="operator" value="${esc(c.operator || '')}" placeholder="—"></td>
       <td><input data-f="places" class="mono" value="${esc(c.places ?? '')}" inputmode="numeric"></td>
       <td><input data-f="distance_km" class="mono" value="${esc(c.distance_km ?? '')}" inputmode="decimal"></td>
@@ -147,8 +149,8 @@ function render(){
             <tbody id="comps">${comps.map(c => compRow(c, 'live', lk)).join('')}</tbody></table></div>
           <button type="button" class="add" data-add="competitor">+ Add competitor</button>
           <div style="border-top:1px solid var(--rule);padding-top:16px;display:flex;flex-direction:column;gap:12px">
-            <div><h3>Pipeline centres</h3><p class="hint" style="margin-top:4px">Approved or under-construction centres that aren't open yet. <strong>Risk %</strong> is the likelihood it completes — the places are weighted by it in step 4 of the demand chain.</p></div>
-            <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / centre</th><th>Description</th><th>Stage</th><th>Operator</th><th>Places</th><th>Dist. km</th><th>Risk %</th><th>Photos</th><th></th></tr></thead>
+            <div><h3>Pipeline centres</h3><p class="hint" style="margin-top:4px">Approved, under-construction or newly opened centres not yet in the competitor list. <strong>Completion %</strong> is the likelihood it completes — its places count at that percentage in step 4 of the demand chain. Choosing a stage sets a default (Already open = 100 %); edit it if you know better.</p></div>
+            <div style="overflow-x:auto"><table class="edit"><thead><tr><th style="width:22%">Site / centre</th><th>Description</th><th>Stage</th><th>Operator</th><th>Places</th><th>Dist. km</th><th title="Likelihood it completes — its places are counted at this percentage in the demand chain">Completion %</th><th>Photos</th><th></th></tr></thead>
               <tbody id="pipes">${pipes.map(c => compRow(c, 'pipeline', lk)).join('')}</tbody></table></div>
             <button type="button" class="add" data-add="pipeline">+ Add pipeline centre</button>
           </div>
@@ -264,6 +266,12 @@ function wire(){
     if (o && o.dataset.suburb){ fields.suburb = o.dataset.suburb; tr.querySelector('[data-f="suburb"]').value = o.dataset.suburb; }
     if (o && o.dataset.rate){ fields.monthly_rate = Number(o.dataset.rate); tr.querySelector('[data-f="monthly_rate"]').value = o.dataset.rate; }
     const res = await adapter.patch(tr.dataset.coll, tr.dataset.row, fields); if (!res.ok) toast(res.reason, 'err');
+  }));
+  // pipeline stage → default completion % (Already open = 100)
+  $$('#pipes [data-f="stage"]').forEach(sel => sel.addEventListener('change', async () => {
+    const pct = STAGE_DEFAULT_PCT[sel.value]; if (pct == null) return;
+    const tr = sel.closest('tr'); const inp = tr.querySelector('[data-f="risk_pct"]'); inp.value = pct;
+    const res = await adapter.patch(tr.dataset.coll, tr.dataset.row, { risk_pct: pct }); if (!res.ok) toast(res.reason, 'err');
   }));
   // council change re-renders so the estate dropdown follows it
   const council = $('#site_council'); if (council) council.addEventListener('change', () => setTimeout(render, 50));
