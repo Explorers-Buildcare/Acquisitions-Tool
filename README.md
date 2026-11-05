@@ -32,7 +32,6 @@ src/data/adapter.js   LocalAdapter (seed.json) + SupabaseAdapter (write-through)
 src/logic/metrics.js  computeFeasibilityMetrics — ported verbatim from the old tool
 src/logic/preflight.js report checks (May 2026 review rules)
 src/logic/status.js   status canonicalisation, labels, relative time
-src/logic/gapmaps.js  GapMaps catchment-report CSV parser, ported verbatim (qa/fixtures/gapmaps-sample.csv)
 src/ui/shell.js       app bar, helpers, toast, boot
 src/pages/*.js        one module per page
 data/make-seed.js     regenerates data/seed.json (node data/make-seed.js)
@@ -69,6 +68,7 @@ Both print `{passed, failed, errors}` and exit non-zero on failure. `qa-metrics`
 ## Not in this pass (next)
 
 - OpCo / PropCo editor — port `acq-feaso.js` into the Financials tab
+- GapMaps **CSV** parser (JSON drop/paste works) — port `parseGapMapsCsv`
 - The 9 generated slides beyond cover / exec / demand / comp / bench / growth / schools / risks are placeholders; PDF export is `window.print()` for now (server-side render later)
 - Sign-in screen + Microsoft SSO
 - Map view — needs `lat`/`lng` (commented in the migration) and a geocoding step
