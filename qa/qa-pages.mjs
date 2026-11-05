@@ -128,6 +128,27 @@ await page.waitForURL(/site\.html\?id=/); await ready();
 ok(await page.locator('h1', { hasText: 'QA Site' }).isVisible(), 'create → opens workspace');
 ok(await page.locator('text=GapMaps').first().isVisible(), 'new site shows missing data');
 
+// ── GapMaps CSV drop ────────────────────────────────────────────────
+{
+  const cobbId = await page.evaluate(() => window.__adapter.feasibilityProjects().find(p => p.name.startsWith('Cobblebank')).id);
+  await page.goto(`${base}/new.html?id=${cobbId}&mode=local`); await ready();
+  const csv = await readFile(new URL('./fixtures/gapmaps-sample.csv', import.meta.url), 'utf8');
+  // Simulate a file drop on the 5-minute zone
+  await page.evaluate(async (csv) => {
+    const zone = document.querySelector('[data-gm="gapmaps_5min"]');
+    const dt = new DataTransfer(); dt.items.add(new File([csv], 'cobblebank-5min.csv', { type: 'text/csv' }));
+    zone.dispatchEvent(new DragEvent('drop', { dataTransfer: dt, bubbles: true, cancelable: true }));
+  }, csv);
+  await page.waitForFunction(id => { const fd = window.__adapter.get('feasibility_data', id); return fd.gapmaps_5min && fd.gapmaps_5min.ldc && fd.gapmaps_5min.ldc.places === 392; }, cobbId);
+  ok(true, 'dropping the catchment CSV parses it into gapmaps_5min');
+  const vic = await page.evaluate(() => (window.__adapter.get('feasibility_data', '00000000-0000-0000-0000-0000000000bc') || {}).gapmaps_5min);
+  ok(vic && vic.ldc && vic.ldc.places === 200000 && vic.seifa === 5.5, 'VIC benchmark row mirrored from the CSV');
+  ok(await page.locator('[data-gm="gapmaps_5min"].has').isVisible(), 'zone shows Loaded');
+  ok((await page.locator('[data-gm="gapmaps_5min"]').textContent()).includes('2608'), 'zone shows children 0–5 from the file');
+  await page.goto(`${base}/site.html?id=${cobbId}&mode=local`); await ready();
+  ok(/^\d\.\d\d×$/.test((await page.locator('.hero.primary .v').textContent()).trim()), 'site now has an effective ratio');
+}
+
 // ── Report workspace (legacy 14-slide deck, ported) ──────────────────
 await page.goto(`${base}/report.html?id=${mickId}&mode=local`); await ready();
 ok((await page.locator('[data-hide]').count()) === 14, '14 slides in rail');

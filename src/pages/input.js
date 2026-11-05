@@ -6,6 +6,7 @@ import { statusOptions } from '../logic/status.js';
 import { fmtAud } from '../logic/metrics.js';
 import { CONFIG } from '../config.js';
 import { VIC_LGAS, EXPLORERS_CENTRES, estatesFor, matchLga } from '../data/reference.js';
+import { parseGapMapsCsv, looksLikeGapMapsCsv, _gmCountMetrics } from '../logic/gapmaps.js';
 
 let adapter, feasId, created = false;
 
@@ -134,10 +135,10 @@ function render(){
             <div style="flex:1 1 180px" id="deal-date">${field('target_settlement', (feaso.deal_type || 'freehold') === 'leasehold' ? 'Target completion' : 'Target settlement', feaso.target_settlement, { type: 'date', cls: 'mono' })}</div>
           </div>
         </section>
-        <section class="card sec" id="s3"><h2><span class="n">3</span>Demand data</h2><p class="hint">Paste or drop the GapMaps catchment exports; the adjustment chain and scorecard compute from these.</p>
+        <section class="card sec" id="s3"><h2><span class="n">3</span>Demand data</h2><p class="hint">Drop the GapMaps catchment-report CSVs for the 5-minute and 10-minute drive-time catchments. Local values are stored on this feasibility; Victoria and Australia values go to the shared benchmark rows so every site compares against the same reference.</p>
           <div class="grid-2">
-            <div class="f"><label>GapMaps · 5-minute catchment</label><div class="drop ${fd.gapmaps_5min ? 'has' : ''}" data-gm="gapmaps_5min">${fd.gapmaps_5min ? `<b>Loaded</b> · ${esc(fd.gapmaps_5min.ldc?.children_05 ?? '?')} children 0–5 · ${esc(fd.gapmaps_5min.ldc?.places ?? '?')} places<br><span style="font-size:12px">Drop a new CSV/JSON export to replace</span>` : 'Drop GapMaps export (CSV or JSON) or <b>paste JSON</b>'}</div></div>
-            <div class="f"><label>GapMaps · 10-minute catchment</label><div class="drop ${fd.gapmaps_10min ? 'has' : ''}" data-gm="gapmaps_10min">${fd.gapmaps_10min ? `<b>Loaded</b> · ${esc(fd.gapmaps_10min.ldc?.children_05 ?? '?')} children 0–5 · ${esc(fd.gapmaps_10min.ldc?.places ?? '?')} places` : 'Drop export or <b>paste JSON</b><br><span style="font-size:12px">Optional — used for the three-tier comparison</span>'}</div></div>
+            <div class="f"><label>GapMaps · 5-minute catchment</label><div class="drop ${fd.gapmaps_5min ? 'has' : ''}" data-gm="gapmaps_5min">${fd.gapmaps_5min ? `<b>Loaded</b> · ${esc(fd.gapmaps_5min.ldc?.children_05 ?? '?')} children 0–5 · ${esc(fd.gapmaps_5min.ldc?.places ?? '?')} places<br><span style="font-size:12px">Drop a new catchment-report CSV to replace</span>` : 'Drop the GapMaps <b>catchment report CSV</b> here, or click to choose it'}</div></div>
+            <div class="f"><label>GapMaps · 10-minute catchment</label><div class="drop ${fd.gapmaps_10min ? 'has' : ''}" data-gm="gapmaps_10min">${fd.gapmaps_10min ? `<b>Loaded</b> · ${esc(fd.gapmaps_10min.ldc?.children_05 ?? '?')} children 0–5 · ${esc(fd.gapmaps_10min.ldc?.places ?? '?')} places` : 'Drop the 10-minute <b>catchment report CSV</b><br><span style="font-size:12px">Optional — used for the three-tier comparison</span>'}</div></div>
           </div>
           <div class="grid-4">
             ${field('target_fee', 'Target fee / day', feaso.target_fee ?? CONFIG.explorersTargetFee, { cls: 'mono', unit: '$' })}
@@ -275,18 +276,36 @@ function wire(){
   }));
   // council change re-renders so the estate dropdown follows it
   const council = $('#site_council'); if (council) council.addEventListener('change', () => setTimeout(render, 50));
-  // GapMaps drop / paste (JSON in this pass; CSV parser is ported next)
+  // GapMaps catchment-report CSV: drop it, or click to choose the file.
+  // Local figures go to this feasibility; VIC + AUS columns are mirrored into
+  // the benchmark rows (same as the old tool). JSON is still accepted.
   $$('[data-gm]').forEach(zone => {
-    const load = async text => {
-      let parsed; try { parsed = JSON.parse(text); } catch(e){ toast('Expected GapMaps JSON (CSV parsing comes in the next pass)', 'err'); return; }
+    const load = async (text, filename) => {
       if (!(await ensureCreated())) return;
-      const res = await adapter.patch('feasibility_data', feasId, { [zone.dataset.gm]: parsed });
-      if (res.ok){ toast('GapMaps data loaded'); render(); } else toast(res.reason, 'err');
+      let local, vic = null, aus = null, n = 0;
+      if (looksLikeGapMapsCsv(text)){
+        try { ({ local, vic, aus } = parseGapMapsCsv(text)); } catch(e){ toast('Could not parse that CSV: ' + (e.message || e), 'err'); return; }
+        n = _gmCountMetrics(local);
+        if (!n){ toast('No GapMaps metrics found in ' + (filename || 'that file') + ' — is it the catchment report CSV?', 'err'); return; }
+      } else {
+        try { local = JSON.parse(text); } catch(e){ toast('Expected a GapMaps catchment-report CSV (or JSON)', 'err'); return; }
+      }
+      const res = await adapter.patch('feasibility_data', feasId, { [zone.dataset.gm]: local });
+      if (!res.ok){ toast(res.reason, 'err'); return; }
+      if (vic && aus){
+        for (const [bid, gm, name, code] of [[CONFIG.benchmarks.VIC, vic, 'Victoria (Benchmark)', 'BENCH-VIC'], [CONFIG.benchmarks.AUS, aus, 'Australia (Benchmark)', 'BENCH-AUS']]){
+          if (!adapter.get('projects', bid)) await adapter.upsert('projects', { id: bid, type: 'benchmark', name, code, active: false });
+          const r = await adapter.upsert('feasibility_data', { id: bid, status: null, gapmaps_5min: gm });
+          if (!r.ok) toast('Benchmark row not updated: ' + r.reason, 'err');
+        }
+      }
+      toast(n ? `Parsed ${n} metric${n === 1 ? '' : 's'} from the ${zone.dataset.gm === 'gapmaps_5min' ? '5' : '10'}-min catchment` : 'GapMaps data loaded');
+      render();
     };
     zone.addEventListener('dragover', e => { e.preventDefault(); zone.style.borderColor = 'var(--pine)'; });
     zone.addEventListener('dragleave', () => { zone.style.borderColor = ''; });
-    zone.addEventListener('drop', async e => { e.preventDefault(); const f = e.dataTransfer.files[0]; if (f) load(await f.text()); });
-    zone.addEventListener('click', async () => { const t = prompt('Paste GapMaps JSON'); if (t) load(t); });
+    zone.addEventListener('drop', async e => { e.preventDefault(); zone.style.borderColor = ''; const f = e.dataTransfer.files[0]; if (f) load(await f.text(), f.name); });
+    zone.addEventListener('click', () => { const inp = document.createElement('input'); inp.type = 'file'; inp.accept = '.csv,.json,text/csv,application/json'; inp.addEventListener('change', async () => { const f = inp.files[0]; if (f) load(await f.text(), f.name); }); inp.click(); });
   });
   // Photos (row-level and site-level)
   $$('[data-photo]').forEach(b => b.addEventListener('click', () => pickPhotos(b.closest('tr').dataset.coll, b.dataset.photo, b.dataset.sub)));
